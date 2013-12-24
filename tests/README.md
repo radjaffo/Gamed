@@ -11,7 +11,7 @@ gtest is included in the `tests/gtest` directory with this repo.
 
 To execute the test suite:
 
-`make tests`
+`make test`
 
 from the root project directory.
 
