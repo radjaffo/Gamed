@@ -19,8 +19,9 @@ class World {
 
         // Setup Map
         bool createMap();
-
+        void displayMap();
         // Return player and mob positions
+        void placeCharacters();
         string getHero();
         string getMob();
 
