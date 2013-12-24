@@ -7,8 +7,9 @@ using namespace std;
 int main()
 {
   World *a = new World;
-    
-    a->looper();
+  cout << a->getHero();
+  // a->looper();
 
-return 0;
+
+  return 0;
 }
