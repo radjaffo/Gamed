@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
+
 #include "world.h"
 
 using namespace std;

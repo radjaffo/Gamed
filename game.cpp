@@ -6,6 +6,8 @@ using namespace std;
 
 int main()
 {
+  srand(0);
+
   World *a = new World;
 
   
