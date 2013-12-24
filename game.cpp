@@ -8,6 +8,8 @@ int main()
 {
   World *a = new World;
   cout << a->getHero();
+
+  a->createMap();
   // a->looper();
 
 

@@ -11,10 +11,14 @@ class World {
     private:
         string Hero;
         string Mob;
+        string Map[5][5];
 
     public:
         World();                // Constructur - Create new World
         ~World();               // Destructor - Destroy World
+
+        // Setup Map
+        bool createMap();
 
         // Return player and mob positions
         string getHero();
