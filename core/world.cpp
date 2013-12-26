@@ -5,6 +5,7 @@
 #include <cstdlib>
 
 #include "world.h"
+#include "character.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ World::World() {
   createMap();
   placeCharacters();
 }
+
 
 bool World::createMap() {
   for(int i = 0; i < 5; i++) {
@@ -40,14 +42,20 @@ void World::displayMap()
 }
 
 void World::placeCharacters()
+// Insert characters into the map in static spots
 {
-
   Map[0][0] = Hero;
   Map[4][4] = Mob;
 }
 
+void World::randomMoveBoth()
+{
+  int x = rand()%5;
+  int y = rand()%5;
 
-
+  cout << "[" << x << "," << y << "]" << endl;
+  Map[x][y] = Hero;
+}
 
 string World::getHero() {
   return Hero;

@@ -25,6 +25,9 @@ class World {
         string getHero();
         string getMob();
 
+        void randomMoveBoth();
+        
+
         /* Future 
 
         // Game Loop Initi
