@@ -5,7 +5,7 @@
 #include <cstdlib>
 
 #include "world.h"
-#include "character.h"
+#include "character/character.h"
 
 using namespace std;
 

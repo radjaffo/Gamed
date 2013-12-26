@@ -1,5 +1,5 @@
 all:
-	g++ game.cpp ./core/*.cpp -o game
+	g++ game.cpp ./core/*.cpp ./core/character/*.cpp -o game
 
 run: 
 	./game

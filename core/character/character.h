@@ -21,6 +21,7 @@ public:
     Character();
     ~Character();
     int getID();
+    void setID(int x);
     void generateID(int x);
     string getName();
     void setName(string name);
