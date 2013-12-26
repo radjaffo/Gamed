@@ -17,18 +17,24 @@ class Character {
     int Atk;
     int Def;
     int Hp;
+
 public:
     Character();
     ~Character();
+
     int getID();
     void setID(int x);
     void generateID(int x);
+
     string getName();
     void setName(string name);
+
     int getAtk();
     void setAtk(int x);
+
     int getDef();
     void setDef(int x);
+
     int getHp();
     void setHp(int x);
 
