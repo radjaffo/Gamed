@@ -2,16 +2,14 @@
 #include <iostream>
 #include <string>
 
-
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
 using namespace std;
 
-class Player;
-class Monster;
 
 class Character {
+protected:
     int ID;
     string Name;
     int Atk;
@@ -20,7 +18,7 @@ class Character {
 
 public:
     Character();
-    ~Character();
+    //~Character();
 
     int getID();
     void setID(int x);
