@@ -28,12 +28,11 @@ class World {
         void randomMoveBoth();
         
 
-        /* Future 
-
-        // Game Loop Initi
         void looper();          // Run game loop until quit
+        /* Future
 
         // Game Loop Definitions
+
         int calculateChanges();   // Calculate differences in
         void display();           // Display changes to player
         void input();             // Collect player input

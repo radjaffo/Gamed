@@ -25,9 +25,10 @@ int main()
     a->displayMap();
   }
 
-  c->attack(d);
+  c->attack(d);   //test player attack function
+  d->retaliate(c);  //test monster attack function
 
-  // a->looper();
+  a->looper();
 
 
   return 0;

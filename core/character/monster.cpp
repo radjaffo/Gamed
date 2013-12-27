@@ -17,4 +17,5 @@ void Monster::retaliate(Player *p)
 	int y = p->getHp() - Atk;
 	p->setHp(y);
 	cout << p->getName() << " got hit for " << Atk << " damage!" << endl;
+	cout << p->getName() << " : " << p->getHp() << endl;
 }

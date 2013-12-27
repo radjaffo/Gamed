@@ -64,3 +64,35 @@ string World::getHero() {
 string World::getMob() {
   return Mob;
 }
+
+void World::looper()
+{
+  int x, y, cc=3;
+  string choice;
+  cout << endl << endl <<"Loopin this sht" << endl;
+  do
+  {
+    cout << "Player : hp" << endl << "Monster : hp" << endl<< endl;
+    cout << "What would you like to do?" << endl;
+    cout << "1.attack" << endl << "2.run" << endl << "3.defend" << endl;
+    cin >> choice;
+    if(choice == "attack")
+    {
+      cout << endl <<"Player attacks the moonstar" << endl << endl << endl;
+    }
+    else if(choice == "run")
+    {
+      cout << endl <<"Player runs like little girl" << endl << endl;
+      cc = 0;
+      cout << "Success, you got away!" << endl;
+    }
+    else if(choice == "defend")
+    {
+      cout << endl <<"Defending!" << endl << endl << endl;
+    }
+    else
+      cout << "Error incorrect entry, please try again" << endl;
+
+
+  }while(cc!=0);
+}
