@@ -2,6 +2,9 @@
 #include <string>
 #include <ctime>
 #include "core/world.h"
+#include "core/character/character.h"
+#include "core/character/player.h"
+#include "core/character/monster.h"
  
 using namespace std;
 
@@ -10,7 +13,9 @@ int main()
   srand(time(NULL));
 
   World *a = new World;
-  
+  Character *b = new Character;
+  Player *c = new Player;
+  Monster *d = new Monster;
 
   
   a->displayMap();
@@ -19,6 +24,9 @@ int main()
     a->randomMoveBoth();
     a->displayMap();
   }
+
+  c->attack(d);
+
   // a->looper();
 
 
