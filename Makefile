@@ -6,7 +6,7 @@ run:
 
 
 test:
-	g++ -I./tests/gtest ./tests/*.cpp ./tests/gtest/*.a -o test_runner
+	g++ -I./tests/gtest ./tests/*.cpp ./core/character/*.cpp ./tests/gtest/*.a -o test_runner
 
 clean:
 	rm -rf ./game

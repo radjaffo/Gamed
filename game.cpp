@@ -10,6 +10,7 @@ int main()
   srand(time(NULL));
 
   World *a = new World;
+  
 
   
   a->displayMap();
