@@ -91,7 +91,7 @@ void World::looper()
       cout << endl <<"Defending!" << endl << endl << endl;
     }
     else
-      cout << "Error incorrect entry, please try again" << endl;
+      cout << "Error! incorrect entry, please try again" << endl;
 
 
   }while(cc!=0);
