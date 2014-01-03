@@ -1,0 +1,5 @@
+01 potion 10
+02 hi-potion 20
+03 mega-potion 50
+04 ultra-potion 100
+05 elixir 300

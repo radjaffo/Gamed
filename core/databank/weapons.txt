@@ -1,0 +1,10 @@
+001 dagger 01
+002 bow 02
+003 pitchfork 03
+004 sword 05
+005 axe 07
+006 xbow 10
+007 gutripper 15
+008 facemelter 20
+009 spiked flang 25
+010 wdestroyer 100
