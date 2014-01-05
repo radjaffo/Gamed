@@ -10,7 +10,6 @@ using namespace std;
 
 int main()
 {
-  srand(time(NULL));
 
   World *a = new World;
   Character *b = new Character;
@@ -25,10 +24,10 @@ int main()
     a->displayMap();
   }*/
 
-  c->attack(d);   //test player attack function
-  d->retaliate(c);  //test monster attack function
+  //c->attack(d);   //test player attack function
+  //d->retaliate(c);  //test monster attack function
 
-  a->looper();    //test loop function
+  a->fight();    //test loop function
 
 
   return 0;

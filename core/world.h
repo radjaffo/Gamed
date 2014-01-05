@@ -28,7 +28,7 @@ class World {
         void randomMoveBoth();
         
 
-        void looper();          // Run game loop until quit
+        void fight();          // Run game loop until quit
         /* Future
 
         // Game Loop Definitions

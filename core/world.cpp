@@ -3,9 +3,12 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <ctime>
 
 #include "world.h"
 #include "character/character.h"
+#include "character/player.h"
+#include "character/monster.h"
 
 using namespace std;
 
@@ -65,34 +68,70 @@ string World::getMob() {
   return Mob;
 }
 
-void World::looper()
+void World::fight()
 {
   int x, y, cc=3;
+  Player *c = new Player;
+  Monster *d = new Monster;
   string choice;
   cout << endl << endl <<"Loopin this sht" << endl;
   do
   {
-    cout << "Player : hp" << endl << "Monster : hp" << endl<< endl;
+    srand(time(NULL));
+    if(c->getHp() <=0)
+    {
+      cc = 1;
+      break;
+    }
+    else if (d->getHp() <=0)
+    {
+      cc = 1;
+      break;
+    }
+    else
+    cout << endl << c->getName() << " : " << c->getHp() << endl << d->getName() << " : " << d->getHp() << endl<< endl;
     cout << "What would you like to do?" << endl;
     cout << "1.attack" << endl << "2.run" << endl << "3.defend" << endl;
     cin >> choice;
     if(choice == "attack")
     {
-      cout << endl <<"Player attacks the moonstar" << endl << endl << endl;
+      int b = rand()%100+1;
+      cout << endl << "Player attacks the moonstar" << endl << endl << endl;
+      c->attack(d);
+      d->retaliate(c);
     }
     else if(choice == "run")
     {
+      int b = rand()%100+1;
       cout << endl <<"Player runs like little girl" << endl << endl;
+      if(b > 40)
+      {
       cc = 0;
       cout << "Success, you got away!" << endl;
+      }
+      cout << "Failed to run!" <<endl;
+      d->retaliate(c);
     }
     else if(choice == "defend")
     {
       cout << endl <<"Defending!" << endl << endl << endl;
+      d->retaliate(c);
     }
     else
       cout << "Error! incorrect entry, please try again" << endl;
 
 
-  }while(cc!=0);
+  }while(cc != 1 || 0);
+  if(c->getHp() <= 0)
+  {
+    cout << "Oh noes you are dead :(" << endl;
+    cout << "Game over!" << endl;
+  }
+  else if(d->getHp() <= 0)
+  { 
+    cout << "You win! " << d->getName() << " is defeated!" << endl;
+    cout << "You got x experience "  << "and " <<  "y gold!" << endl;
+  }
+  else
+    cout << " You made it back to the forest!!" <<endl;
 }

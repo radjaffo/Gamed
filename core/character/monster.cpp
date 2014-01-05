@@ -13,9 +13,9 @@ Monster::Monster()
 
 void Monster::retaliate(Player *p)
 {
-	cout << Name << " swings wildly!" << endl;
+	cout << Name << " swings wildly!" << endl << endl;
 	int y = p->getHp() - Atk;
 	p->setHp(y);
-	cout << p->getName() << " got hit for " << Atk << " damage!" << endl;
-	cout << p->getName() << " : " << p->getHp() << endl;
+	cout << p->getName() << " got hit for " << Atk << " damage!" << endl << endl;
+	//cout << p->getName() << " : " << p->getHp() << endl;
 }

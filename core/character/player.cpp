@@ -13,11 +13,11 @@ Player::Player()
 
 void Player::attack(Monster *m)
 {
-	cout << "Attacking " << m->getName() << endl;
+	cout << "Attacking " << m->getName()  << "..."<< endl << endl;
 	int y = m->getHp() - Atk;
 	m->setHp(y);
-	cout << "Hit " << m->getName() << " for " << Atk << " damage!" << endl;
-	cout << m->getName() << ":" << m->getHp() << endl;
+	cout << "Hit " << m->getName() << " for " << Atk << " damage!" << endl << endl;
+	//cout << m->getName() << ":" << m->getHp() << endl;
 }
 
 void Player::defend()
