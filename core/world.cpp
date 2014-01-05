@@ -125,7 +125,7 @@ void World::fight()
   if(c->getHp() <= 0)
   {
     cout << "Oh noes you are dead :(" << endl;
-    cout << "Game over!" << endl;
+    cout << "Game over!" << " Thanks for playing!" << endl;
   }
   else if(d->getHp() <= 0)
   { 

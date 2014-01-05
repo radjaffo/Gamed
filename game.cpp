@@ -13,8 +13,8 @@ int main()
 
   World *a = new World;
   Character *b = new Character;
-  Player *c = new Player;
-  Monster *d = new Monster;
+  //Player *c = new Player;
+  //Monster *d = new Monster;
 
   
   a->displayMap();
