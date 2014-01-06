@@ -27,7 +27,7 @@ int main()
   //c->attack(d);   //test player attack function
   //d->retaliate(c);  //test monster attack function
 
-  a->fight();    //test loop function
+  a->looper();    //test loop function
 
 
   return 0;

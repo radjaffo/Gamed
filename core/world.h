@@ -13,6 +13,7 @@ class World {
         string Mob;
         string Map[5][5];
 
+
     public:
         World();                // Constructur - Create new World
         ~World();               // Destructor - Destroy World
@@ -28,7 +29,8 @@ class World {
         void randomMoveBoth();
         
 
-        void fight();          // Run game loop until quit
+        void fight();          
+        void looper();             // Run game loop until quit
         /* Future
 
         // Game Loop Definitions

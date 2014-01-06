@@ -49,10 +49,12 @@ void World::placeCharacters()
 {
   Map[0][0] = Hero;
   Map[4][4] = Mob;
+
 }
 
 void World::randomMoveBoth()
 {
+
   int x = rand()%5;
   int y = rand()%5;
 
@@ -67,13 +69,27 @@ string World::getHero() {
 string World::getMob() {
   return Mob;
 }
+void World::looper()
+{
+ int x, y, mc = 1;
+ string choice;
+ Player *c = new Player; 
+ Monster *d = new Monster;
+ do
+ {
+  srand(time(NULL));
+  fight();
+  mc = 2;
+ }
+ while(mc == 1);
+}
 
 void World::fight()
 {
   int x, y, cc=3;
+  string choice;
   Player *c = new Player;
   Monster *d = new Monster;
-  string choice;
   cout << endl << endl <<"Loopin this sht" << endl;
   do
   {
@@ -106,22 +122,30 @@ void World::fight()
       cout << endl <<"Player runs like little girl" << endl << endl;
       if(b > 40)
       {
-      cc = 0;
+      cc = 1;
       cout << "Success, you got away!" << endl;
       }
+      else
+      {
       cout << "Failed to run!" <<endl;
       d->retaliate(c);
+      }
     }
     else if(choice == "defend")
     {
       cout << endl <<"Defending!" << endl << endl << endl;
+      int x = c->getDef();
+      x= x*2;
+      c->setDef(x);
       d->retaliate(c);
+      x=x/2;
+      c->setDef(x);
     }
     else
       cout << "Error! incorrect entry, please try again" << endl;
 
 
-  }while(cc != 1 || 0);
+  }while(cc != 1);
   if(c->getHp() <= 0)
   {
     cout << "Oh noes you are dead :(" << endl;
@@ -130,8 +154,12 @@ void World::fight()
   else if(d->getHp() <= 0)
   { 
     cout << "You win! " << d->getName() << " is defeated!" << endl;
-    cout << "You got x experience "  << "and " <<  "y gold!" << endl;
+    cout << "You got x experience "  << "and " <<  "y gold!" << endl << endl;
+
   }
   else
     cout << " You made it back to the forest!!" <<endl;
 }
+
+
+
