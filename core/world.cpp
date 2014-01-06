@@ -17,6 +17,8 @@ World::World() {
   Mob = "M";
   createMap();
   placeCharacters();
+  c = new Player;
+  d = new Monster;
 }
 
 
@@ -56,14 +58,14 @@ void World::randomMoveBoth()
 {
 
   int x = rand()%5;
-  srand(time(NULL));
+  srand(time(NULL)%50);
   int y = rand()%5;
 
   cout << "[" << x << "," << y << "]" << endl;
   Map[x][y] = Hero;
-  srand(time(NULL));
+  srand(time(NULL)%50);
   int a = rand()%5;
-  srand(time(NULL));
+  srand(time(NULL)%10);
   int b = rand()%5;
   Map[a][b] = Mob;
   cout << "[" << a << "," << b << "]" << endl;
@@ -86,18 +88,23 @@ void World::looper()
 {
  int x, y, mc = 1;
  string choice;
- Player *c = new Player; 
- Monster *d = new Monster;
+ //Player *c = new Player; 
+ //Monster *d = new Monster;
+ createHero();
  do
  {
+  cout << endl << endl << c->getName() << " : " << c->getHp() << endl << endl;
   cout << "1. Search" << endl << "2. Quit" << endl;
   cin >> choice;
+  if(c->getHp() <= 0)
+    mc = 2;
   if(choice == "search")
   {
     randomMoveBoth();
   }
   if(choice == "quit")
   {
+    cout <<"Thanks for playing, goodbye!" << endl;
     mc = 2;
   }
  }
@@ -108,9 +115,8 @@ void World::fight()
 {
   int x, y, cc=3;
   string choice;
-  Player *c = new Player;
-  Monster *d = new Monster;
-  
+ //Player *c = new Player; 
+ //Monster *d = new Monster;
   do
   {
     srand(time(NULL));
@@ -178,8 +184,18 @@ void World::fight()
 
   }
   else
-    cout << " You made it back to the forest!!" <<endl;
+    cout << "Returning to the forest" <<endl;
 }
 
+void World::createHero()
+{
+  string name;
 
+  cout << "Welcome to the world, what should we call you?" << endl;
+  cin >> name;
+  cout << "Alright, " << name << " welcome to Gamed" << endl;
+  c->setName(name);
+  cout << endl;
+
+}
 

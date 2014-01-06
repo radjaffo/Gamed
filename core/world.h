@@ -7,22 +7,27 @@
 
 using namespace std;
 
+class Player;
+class Monster;
+
 class World {
     private:
         string Hero;
         string Mob;
         string Map[5][5];
-
+        Player *c;
+        Monster *d;
 
     public:
         World();                // Constructur - Create new World
-        ~World();               // Destructor - Destroy World
+        //~World();               // Destructor - Destroy World
 
         // Setup Map
         bool createMap();
         void displayMap();
         // Return player and mob positions
         void placeCharacters();
+        void createHero();
         string getHero();
         string getMob();
 
@@ -44,7 +49,6 @@ class World {
         // Player Input
         void randomMoveBoth();  // Move Player and Mob randomly around board
         void resetPlayerPosition();
-
         */
 };
 #endif
