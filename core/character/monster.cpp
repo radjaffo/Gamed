@@ -16,7 +16,7 @@ void Monster::retaliate(Player *p)
 	cout << Name << " swings wildly!" << endl << endl;
 	int x = Atk - p->getDef();
 	if(x <=0)
-		x=1;
+		x=1;			//incase def beats out enemy atk
 	int y = p->getHp() - x;
 
 	p->setHp(y);

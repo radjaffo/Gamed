@@ -56,10 +56,23 @@ void World::randomMoveBoth()
 {
 
   int x = rand()%5;
+  srand(time(NULL));
   int y = rand()%5;
 
   cout << "[" << x << "," << y << "]" << endl;
   Map[x][y] = Hero;
+  srand(time(NULL));
+  int a = rand()%5;
+  srand(time(NULL));
+  int b = rand()%5;
+  Map[a][b] = Mob;
+  cout << "[" << a << "," << b << "]" << endl;
+
+  if (Map[x][y] == Map[a][b])
+  {
+    cout << "Monster encountered!! Time to fight!" << endl;
+   fight();
+  }
 }
 
 string World::getHero() {
@@ -77,9 +90,16 @@ void World::looper()
  Monster *d = new Monster;
  do
  {
-  srand(time(NULL));
-  fight();
-  mc = 2;
+  cout << "1. Search" << endl << "2. Quit" << endl;
+  cin >> choice;
+  if(choice == "search")
+  {
+    randomMoveBoth();
+  }
+  if(choice == "quit")
+  {
+    mc = 2;
+  }
  }
  while(mc == 1);
 }
@@ -90,7 +110,7 @@ void World::fight()
   string choice;
   Player *c = new Player;
   Monster *d = new Monster;
-  cout << endl << endl <<"Loopin this sht" << endl;
+  
   do
   {
     srand(time(NULL));
