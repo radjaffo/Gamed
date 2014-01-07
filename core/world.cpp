@@ -204,7 +204,7 @@ void World::createHero()
   cout << c->getName() << endl << "Atk : " << c->getAtk() << endl << "Def : " << c->getDef() << endl;
   cout << "Hp : " << c->getHp() << endl;
   cout << "atk = atk, def = def, hp = hp" << endl;
-  cout << "Put 1 stat point into... ";
+  cout << "Put 1 stat point into... " << endl;
   cin >> statAdjuster;
   if(statAdjuster == "atk")
     {
@@ -233,16 +233,25 @@ void World::createHero()
   else 
     cout << endl << "Error! Incorrect entry, please try again" << endl << endl;
 } while (stats > 0);
-
-
-
-
-
-
+firstFight();
 }
 
 void World::firstFight()
 {
+  cout << "Enter through pauses";
+  string enter;
+  cout << endl << endl <<"You wake up after a hefty night of feasting completely confused with a massive stomachache..." << endl;
+  cin >> enter;
+  cout << "No time to think... Above you stands a lone goblin twirling a stick" << endl;
+  cin >> enter;
+  cout << "You pick up a nearby bone and charge the goblin!" << endl;
+  cin >> enter;
+
+  cout << string(25, '\n');
+  cout << "                     ROUND 1... FIGHT"  << endl << endl << endl << endl << endl;
+  cin >> enter;
+  cout << string(25, '\n');
+
+
 
 }
-
