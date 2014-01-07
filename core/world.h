@@ -35,10 +35,12 @@ class World {
         void randomMoveBoth();
         
 
-        void fight();          
+        void fight(Monster *m);          
         void looper();             // Run game loop until quit
 
         void firstFight();
+        void displayCharBox(Monster *m);
+        void displayHps(Monster *m);
         /* Future
 
         // Game Loop Definitions

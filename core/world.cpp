@@ -74,7 +74,7 @@ void World::randomMoveBoth()
   if (Map[x][y] == Map[a][b])
   {
     cout << "Monster encountered!! Time to fight!" << endl;
-   fight();
+   fight(d);
   }
 }
 
@@ -112,7 +112,7 @@ void World::looper()
  while(mc == 1);
 }
 
-void World::fight()
+void World::fight(Monster *m)
 {
   int x, y, cc=3;
   string choice;
@@ -126,28 +126,35 @@ void World::fight()
       cc = 1;
       break;
     }
-    else if (d->getHp() <=0)
+    else if (m->getHp() <=0)
     {
       cc = 1;
       break;
     }
     else
-    cout << endl << c->getName() << " : " << c->getHp() << endl << d->getName() << " : " << d->getHp() << endl<< endl;
+    displayCharBox(m);
+    //cout << endl << c->getName() << " : " << c->getHp() << endl << m->getName() << " : " << m->getHp() << endl<< endl;
     cout << "What would you like to do?" << endl;
-    cout << "1.attack" << endl << "2.run" << endl << "3.defend" << endl;
+    //cout << "1.attack" << endl << "2.run" << endl << "3.defend" << endl;
     cin >> choice;
     if(choice == "attack")
     {
       int b = rand()%100+1;
       cout << endl << "Player attacks the moonstar" << endl << endl << endl;
-      c->attack(d);
-      d->retaliate(c);
+      c->attack(m);
+      m->retaliate(c);
     }
     else if(choice == "run")
     {
       int b = rand()%100+1;
       cout << endl <<"Player runs like little girl" << endl << endl;
-      if(b > 40)
+      
+      if(m->getName() == "Garthan")
+      {
+        cout << "Nope, nope, nope, can't run from this one" << endl;
+        m->retaliate(c);
+      }
+      else if(b > 40)
       {
       cc = 1;
       cout << "Success, you got away!" << endl;
@@ -155,7 +162,7 @@ void World::fight()
       else
       {
       cout << "Failed to run!" <<endl;
-      d->retaliate(c);
+      m->retaliate(c);
       }
     }
     else if(choice == "defend")
@@ -164,7 +171,7 @@ void World::fight()
       int x = c->getDef();
       x= x*2;
       c->setDef(x);
-      d->retaliate(c);
+      m->retaliate(c);
       x=x/2;
       c->setDef(x);
     }
@@ -178,12 +185,12 @@ void World::fight()
     cout << "Oh noes you are dead :(" << endl;
     cout << "Game over!" << " Thanks for playing!" << endl;
   }
-  else if(d->getHp() <= 0)
+  else if(m->getHp() <= 0)
   { 
-    cout << "You win! " << d->getName() << " is defeated!" << endl;
+    cout << "You win! " << m->getName() << " is defeated!" << endl;
     cout << "You got x experience "  << "and " <<  "y gold!" << endl << endl;
     cout << "Returning to the forest!" << endl;
-    d->setHp(25);
+    m->setHp(25);
   }
   else
     cout << "Returning to the forest" <<endl;
@@ -203,7 +210,7 @@ void World::createHero()
   do{
   cout << c->getName() << endl << "Atk : " << c->getAtk() << endl << "Def : " << c->getDef() << endl;
   cout << "Hp : " << c->getHp() << endl;
-  cout << "atk = atk, def = def, hp = hp" << endl;
+  cout << "atk = atk, def = def, hp = hp" << endl << endl;
   cout << "Put 1 stat point into... " << endl;
   cin >> statAdjuster;
   if(statAdjuster == "atk")
@@ -211,7 +218,7 @@ void World::createHero()
       int x = c->getAtk();
       x++;
       c->setAtk(x);
-      cout << endl << "Atk raised by 1!" << endl;
+      cout << endl << "Atk raised by 1!" << endl << endl;
       stats--;
     }
   else if (statAdjuster == "def")
@@ -219,7 +226,7 @@ void World::createHero()
     int x = c->getDef();
     x++;
     c->setDef(x);
-    cout << endl << "Def raised by 1!" << endl;
+    cout << endl << "Def raised by 1!" << endl << endl;
     stats--;
   }
   else if (statAdjuster == "hp")
@@ -227,7 +234,7 @@ void World::createHero()
     int x = c->getHp();
     x++;
     c->setHp(x);
-    cout << endl << "Hp raised by 1!" << endl;
+    cout << endl << "Hp raised by 1!" << endl << endl;
     stats--;
   }
   else 
@@ -238,20 +245,69 @@ firstFight();
 
 void World::firstFight()
 {
-  cout << "Enter through pauses";
+  cout << "a then enter through pauses"; //gotta find a better way to do this
   string enter;
-  cout << endl << endl <<"You wake up after a hefty night of feasting completely confused with a massive stomachache..." << endl;
+  cout << endl << endl <<"You wake up after a hefty night of ... completely confused with an empty stomachache..." << endl;
   cin >> enter;
-  cout << "No time to think... Above you stands a lone goblin twirling a stick" << endl;
+  cout << "No time to think... Above you stands a lone goblin with brandishing a leg of lamb!" << endl;
   cin >> enter;
   cout << "You pick up a nearby bone and charge the goblin!" << endl;
   cin >> enter;
 
   cout << string(25, '\n');
-  cout << "                     ROUND 1... FIGHT"  << endl << endl << endl << endl << endl;
+  cout << "                         ROUND 1... FIGHT"  << endl << endl << endl <<endl << endl << endl << endl << endl;
   cin >> enter;
   cout << string(25, '\n');
+f->setName("Garthan");
+f->setAtk(5);
+f->setDef(2);
+fight(f);
 
 
 
+}
+
+void World::displayCharBox(Monster *m)
+{
+  cout << endl << endl;
+  cout << " ______________________________________________________________" << endl;
+  cout << "| Hero                            Enemy                        |" << endl;
+  cout << "| " << c->getName() << "                           " << m->getName() << "                      |" << endl;
+  displayHps(m);
+  cout << "|                                                              |" << endl;
+  cout << "|     1. attack                          2. defend             |" << endl;
+  cout << "|     3. run                             4. ....?              |" << endl;
+  cout << "|______________________________________________________________|" << endl << endl << endl << endl;
+
+}
+
+void World::displayHps(Monster *m)
+{
+  int cc = 5;
+  int sc = 0;
+  int x = c->getHp();
+  int y = m->getHp();
+  cout << "| Hp:";
+  for(int i=0; i < x; i++)
+  {
+      cout << "/";
+      cc++;
+  }
+  if(cc <25)
+  {
+    for(sc = 25; sc > cc; sc--)
+      cout << " ";
+  }
+  cc = 37;
+  sc = 62;
+  cout << "         Hp:";
+  for(int j=0; j < y; j++)
+  {
+    cout << "/";
+    cc++;
+  } 
+  if(cc < 62)
+  for(sc = 62; sc > cc; sc--)
+      cout << " ";
+  cout << " |" << endl;
 }
