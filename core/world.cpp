@@ -12,13 +12,14 @@
 
 using namespace std;
 
-World::World() {
-  Hero = "H";
+World::World() {       
+  Hero = "H";           //strings for graphics
   Mob = "M";
-  createMap();
+  createMap();          //functions for graphics
   placeCharacters();
-  c = new Player;
-  d = new Monster;
+  c = new Player;       //hero setup
+  f = new Monster;      //first fight
+  d = new Monster;      //forest
 }
 
 
@@ -181,7 +182,8 @@ void World::fight()
   { 
     cout << "You win! " << d->getName() << " is defeated!" << endl;
     cout << "You got x experience "  << "and " <<  "y gold!" << endl << endl;
-
+    cout << "Returning to the forest!" << endl;
+    d->setHp(25);
   }
   else
     cout << "Returning to the forest" <<endl;
@@ -189,13 +191,58 @@ void World::fight()
 
 void World::createHero()
 {
-  string name;
+  string name, statAdjuster;
 
   cout << "Welcome to the world, what should we call you?" << endl;
   cin >> name;
   cout << "Alright, " << name << " welcome to Gamed" << endl;
   c->setName(name);
   cout << endl;
+  cout << "You have 3 stat points to spend, choose wisely" << endl << endl;
+  int stats = 3;
+  do{
+  cout << c->getName() << endl << "Atk : " << c->getAtk() << endl << "Def : " << c->getDef() << endl;
+  cout << "Hp : " << c->getHp() << endl;
+  cout << "atk = atk, def = def, hp = hp" << endl;
+  cout << "Put 1 stat point into... ";
+  cin >> statAdjuster;
+  if(statAdjuster == "atk")
+    {
+      int x = c->getAtk();
+      x++;
+      c->setAtk(x);
+      cout << endl << "Atk raised by 1!" << endl;
+      stats--;
+    }
+  else if (statAdjuster == "def")
+  {
+    int x = c->getDef();
+    x++;
+    c->setDef(x);
+    cout << endl << "Def raised by 1!" << endl;
+    stats--;
+  }
+  else if (statAdjuster == "hp")
+  {
+    int x = c->getHp();
+    x++;
+    c->setHp(x);
+    cout << endl << "Hp raised by 1!" << endl;
+    stats--;
+  }
+  else 
+    cout << endl << "Error! Incorrect entry, please try again" << endl << endl;
+} while (stats > 0);
+
+
+
+
+
+
+}
+
+void World::firstFight()
+{
 
 }
 

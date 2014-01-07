@@ -17,9 +17,10 @@ class World {
         string Map[5][5];
         Player *c;
         Monster *d;
+        Monster *f;
 
     public:
-        World();                // Constructur - Create new World
+        World();                // Constructor - Create new World
         //~World();               // Destructor - Destroy World
 
         // Setup Map
@@ -36,6 +37,8 @@ class World {
 
         void fight();          
         void looper();             // Run game loop until quit
+
+        void firstFight();
         /* Future
 
         // Game Loop Definitions
