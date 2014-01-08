@@ -15,6 +15,7 @@ protected:
     int Atk;
     int Def;
     int Hp;
+    int maxHp;
 
 public:
     Character();
@@ -36,6 +37,8 @@ public:
     int getHp();
     void setHp(int x);
 
+    int getmaxHp();
+    void setmaxHp(int x);
 };
 
 #endif

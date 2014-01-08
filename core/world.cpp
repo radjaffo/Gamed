@@ -161,6 +161,8 @@ void World::fight(Monster *m)
       {
       cc = 1;
       cout << "Success, you got away!" << endl;
+      int x = m->getmaxHp();
+      m->setHp(x);
       }
       else
       {
@@ -277,14 +279,15 @@ cout << endl << endl << endl << endl <<  "Darkness.." << endl << endl << endl <<
 cin >> enter;
 cout << "You wake up in a soft bed of hay" << endl << endl;
 c->setHp(20);
-cout << "????" << endl;
-cout << "Awake are we? Ye stumbled in here lookin foul and just fell over...";
+cout << "????:" << endl;
+cout << "Awake are we? Ye stumbled in here lookin foul and just fell over..." << endl;
 cin >> enter;
-cout << "Harvey" << endl;
-cout << endl << "Anyways me names Harvey and I own the inn over yonder" << endl;
+cout << "Harvey:" << endl;
+cout << "Anyways me names Harvey and I own the inn over yonder" << endl;
 cout << "Harvey points to a nearby building" << endl << endl;
 cin >> enter;
-cout << "If ye needs to rest ever comon over, theres always a warm bed open" << endl;
+cout << "Harvey:" << endl;
+cout << "If ye ever needs to rest comon over, theres always a warm bed open" << endl;
 cout << "Harvey stumbles away" << endl;
 cin >> enter;
 town();
@@ -339,14 +342,14 @@ void World::town()
 {
   string tChoice;
   int cc = 1;
-  cout << "Town" << endl << endl << endl;
+  do
+  {
+  cout << endl << endl << "Town" << endl << endl << endl;
   cout << "1.forest" << endl;
   cout << "2.inn" << endl;
   //cout << "3.Weapon shop" << endl;
   //cout << "4.Item shop" << endl << endl;
   cout <<"Choose where to go..." << endl;
-  do
-  {
     cin >> tChoice;
     if(tChoice == "forest")
     {
@@ -356,7 +359,7 @@ void World::town()
     else if(tChoice == "inn")
     {
       cout << "Heading to the Inn" << endl << endl;
-      //inn();
+      inn();
     }
     //else if(tChoice == "weapon")
     else
@@ -368,9 +371,31 @@ void World::town()
 
 void World::inn()
 {
-
+  int ic = 1;
+  do
+  {
+  cout << endl << endl << endl << endl << endl;
+  string iChoice;
+  cout <<"The Birdbath" << endl << endl;
+  cout <<"1. Rest (recover Hp)" << endl;
+  //cout <<"2. Save" << endl;
+  cout <<"3. Town" << endl;
+  cin >> iChoice;
+  if(iChoice == "rest")
+    {
+    cout << "Hp restored!" << endl << endl << endl;
+    int x = c->getmaxHp();
+    c->setHp(x);
+    }
+  else if(iChoice == "town")
+    {
+    cout << "Returning to town!" << endl << endl;
+    break;
+    }
+  else
+    cout << "Nope, try again" << endl;
+  }while(ic == 1);
 }
-
 
 
 

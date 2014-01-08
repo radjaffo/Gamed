@@ -9,6 +9,7 @@ Monster::Monster()
 	Atk = 3;
 	Def = 3;
 	Hp = 25;
+	maxHp = 25;
 }
 
 void Monster::retaliate(Player *p)

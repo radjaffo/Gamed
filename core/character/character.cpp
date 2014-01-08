@@ -52,3 +52,11 @@ int Character::getHp(){
 void Character::setHp(int x){
     Hp = x;
 }
+
+int Character::getmaxHp(){
+    return maxHp;
+}
+
+void Character::setmaxHp(int x){
+    maxHp = x;
+}

@@ -9,6 +9,7 @@ Player::Player()
 	Atk = 5;
 	Def = 5;
 	Hp = 20;
+	maxHp = 20;
 }
 
 void Player::attack(Monster *m)
