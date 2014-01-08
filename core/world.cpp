@@ -89,13 +89,11 @@ void World::looper()
 {
  int x, y, mc = 1;
  string choice;
- //Player *c = new Player; 
- //Monster *d = new Monster;
  createHero();
  do
  {
   cout << endl << endl << c->getName() << " : " << c->getHp() << endl << endl;
-  cout << "1. Search" << endl << "2. Quit" << endl;
+  cout << "1. Search" << endl << "2. Town" << endl << "3. Quit" << endl;
   cin >> choice;
   if(c->getHp() <= 0)
     mc = 2;
@@ -103,9 +101,14 @@ void World::looper()
   {
     randomMoveBoth();
   }
-  if(choice == "quit")
+  else if (choice == "town")
   {
-    cout <<"Thanks for playing, goodbye!" << endl;
+    cout << endl <<"Returning to town" << endl << endl << endl;
+    town();
+  }
+  else if (choice == "quit")
+  {
+    cout << endl << "Thanks for playing... Goodbye!" << endl << endl;
     mc = 2;
   }
  }
@@ -189,7 +192,6 @@ void World::fight(Monster *m)
   { 
     cout << "You win! " << m->getName() << " is defeated!" << endl;
     cout << "You got x experience "  << "and " <<  "y gold!" << endl << endl;
-    cout << "Returning to the forest!" << endl;
     m->setHp(25);
   }
   else
@@ -248,7 +250,7 @@ void World::firstFight()
   cout << "a then enter through pauses"; //gotta find a better way to do this
   string enter;
   cout << endl << endl <<"You wake up after a hefty night of ... completely confused with an empty stomachache..." << endl;
-  cin >> enter;
+  enter = cin.get();  //nope
   cout << "No time to think... Above you stands a lone goblin with brandishing a leg of lamb!" << endl;
   cin >> enter;
   cout << "You pick up a nearby bone and charge the goblin!" << endl;
@@ -259,12 +261,33 @@ void World::firstFight()
   cin >> enter;
   cout << string(25, '\n');
 f->setName("Garthan");
-f->setAtk(5);
-f->setDef(2);
+f->setAtk(9);
+f->setDef(3);
 fight(f);
-
-
-
+cout << "You grab the leg of lamb from the defeated goblin and devour it bone and all!!!" << endl << endl;
+cin >> enter;
+cout << "Exhausted ... you stumble through the dense forest" << endl << endl;
+cin >> enter;
+cout << "After what seems like hours you finally see a light shining through the darkness" << endl << endl;
+cin >> enter;
+cout << "Bloody and Bruised, you collapse upon entering the town. The last thing you hear are the ravens cawing" << endl << endl;
+cin >> enter;
+cout << string(12, '\n');
+cout << endl << endl << endl << endl <<  "Darkness.." << endl << endl << endl << endl;  //insert birds ascii
+cin >> enter;
+cout << "You wake up in a soft bed of hay" << endl << endl;
+c->setHp(20);
+cout << "????" << endl;
+cout << "Awake are we? Ye stumbled in here lookin foul and just fell over...";
+cin >> enter;
+cout << "Harvey" << endl;
+cout << endl << "Anyways me names Harvey and I own the inn over yonder" << endl;
+cout << "Harvey points to a nearby building" << endl << endl;
+cin >> enter;
+cout << "If ye needs to rest ever comon over, theres always a warm bed open" << endl;
+cout << "Harvey stumbles away" << endl;
+cin >> enter;
+town();
 }
 
 void World::displayCharBox(Monster *m)
@@ -288,7 +311,7 @@ void World::displayHps(Monster *m)
   int x = c->getHp();
   int y = m->getHp();
   cout << "| Hp:";
-  for(int i=0; i < x; i++)
+  for(int i=0; i < x; i++)  //enhance this... if x > 20 ||y > 25 it wont work
   {
       cout << "/";
       cc++;
@@ -311,3 +334,45 @@ void World::displayHps(Monster *m)
       cout << " ";
   cout << " |" << endl;
 }
+
+void World::town()
+{
+  string tChoice;
+  int cc = 1;
+  cout << "Town" << endl << endl << endl;
+  cout << "1.forest" << endl;
+  cout << "2.inn" << endl;
+  //cout << "3.Weapon shop" << endl;
+  //cout << "4.Item shop" << endl << endl;
+  cout <<"Choose where to go..." << endl;
+  do
+  {
+    cin >> tChoice;
+    if(tChoice == "forest")
+    {
+      cc = 2;
+      cout << "Entering the forest!" << endl << endl;
+    }
+    else if(tChoice == "inn")
+    {
+      cout << "Heading to the Inn" << endl << endl;
+      //inn();
+    }
+    //else if(tChoice == "weapon")
+    else
+      cout <<"Nope, try again" << endl;
+
+  }while(cc==1);
+
+}
+
+void World::inn()
+{
+
+}
+
+
+
+
+
+

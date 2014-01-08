@@ -41,6 +41,10 @@ class World {
         void firstFight();
         void displayCharBox(Monster *m);
         void displayHps(Monster *m);
+
+
+        void town();
+        void inn();
         /* Future
 
         // Game Loop Definitions
