@@ -6,6 +6,7 @@
 Monster::Monster()
 {
 	Name = "booM";
+	ID = 0;
 	Atk = 3;
 	Def = 3;
 	Hp = 25;

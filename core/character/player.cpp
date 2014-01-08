@@ -10,6 +10,8 @@ Player::Player()
 	Def = 5;
 	Hp = 20;
 	maxHp = 20;
+	Exp = 0;
+	Level = 0;
 }
 
 void Player::attack(Monster *m)

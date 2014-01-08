@@ -90,6 +90,7 @@ void World::looper()
  int x, y, mc = 1;
  string choice;
  createHero();
+ cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  do
  {
   cout << endl << endl << c->getName() << " : " << c->getHp() << endl << endl;
@@ -119,6 +120,7 @@ void World::fight(Monster *m)
 {
   int x, y, cc=3;
   string choice;
+  string enter;
  //Player *c = new Player; 
  //Monster *d = new Monster;
   do
@@ -193,7 +195,13 @@ void World::fight(Monster *m)
   else if(m->getHp() <= 0)
   { 
     cout << "You win! " << m->getName() << " is defeated!" << endl;
-    cout << "You got x experience "  << "and " <<  "y gold!" << endl << endl;
+    cout << "You got " << m->getExp() << " experience "  << "and " <<  "y gold!" << endl << endl;
+    cin >> enter;
+    int a = m->getExp();
+    int b = c->getExp();
+    b = b+a;
+    c->setExp(b);
+    cout << "Exp : " << c->getExp() << endl;
     m->setHp(25);
   }
   else
@@ -204,9 +212,10 @@ void World::createHero()
 {
   string name, statAdjuster;
 
-  cout << "Welcome to the world, what should we call you?" << endl;
+  cout << string(25, '\n');
+  cout <<"Welcome to the world, what should we call you?" << endl;
   cin >> name;
-  cout << "Alright, " << name << " welcome to Gamed" << endl;
+  cout << "Alright, " << name << " welcome to Gamed" << endl << endl;
   c->setName(name);
   cout << endl;
   cout << "You have 3 stat points to spend, choose wisely" << endl << endl;
@@ -265,6 +274,7 @@ void World::firstFight()
 f->setName("Garthan");
 f->setAtk(9);
 f->setDef(3);
+f->setExp(100);
 fight(f);
 cout << "You grab the leg of lamb from the defeated goblin and devour it bone and all!!!" << endl << endl;
 cin >> enter;
@@ -288,7 +298,7 @@ cout << "Harvey points to a nearby building" << endl << endl;
 cin >> enter;
 cout << "Harvey:" << endl;
 cout << "If ye ever needs to rest comon over, theres always a warm bed open" << endl;
-cout << "Harvey stumbles away" << endl;
+cout << "Harvey stumbles away" << endl<<endl;
 cin >> enter;
 town();
 }
@@ -390,7 +400,7 @@ void World::inn()
   else if(iChoice == "town")
     {
     cout << "Returning to town!" << endl << endl;
-    break;
+    ic = 2;
     }
   else
     cout << "Nope, try again" << endl;

@@ -13,11 +13,9 @@ int main()
 
   World *a = new World;
   Character *b = new Character;
-  //Player *c = new Player;
-  //Monster *d = new Monster;
 
   
-  a->displayMap();
+  //a->displayMap();
   /*for(int i=0; i < 10; i++) 
   {
     a->randomMoveBoth();

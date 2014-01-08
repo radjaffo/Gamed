@@ -20,6 +20,10 @@ int Character::getID(){
 void Character::setID(int x){
     ID = x;
 }
+void Character::generateID(int x){
+    x = x+1;
+    ID = x;
+}
 
 string Character::getName(){
     return Name;
@@ -60,3 +64,20 @@ int Character::getmaxHp(){
 void Character::setmaxHp(int x){
     maxHp = x;
 }
+
+int Character::getExp(){
+    return Exp;
+}
+
+void Character::setExp(int x){
+    Exp = x;
+}
+
+int Character::getLevel(){
+    return Level;
+}
+
+void Character::setLevel(int x){
+    Level = x;
+}
+

@@ -16,6 +16,9 @@ protected:
     int Def;
     int Hp;
     int maxHp;
+    int Exp;
+    int Level;
+
 
 public:
     Character();
@@ -39,6 +42,13 @@ public:
 
     int getmaxHp();
     void setmaxHp(int x);
+
+    int getExp();
+    void setExp(int x);
+
+    int getLevel();
+    void setLevel(int x);
+    
 };
 
 #endif
