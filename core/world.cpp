@@ -202,6 +202,7 @@ void World::fight(Monster *m)
     b = b+a;
     c->setExp(b);
     cout << "Exp : " << c->getExp() << endl;
+    //c->checkLevelUp();
     m->setHp(25);
   }
   else
