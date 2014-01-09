@@ -38,11 +38,12 @@ class World {
         void fight(Monster *m);          
         void looper();             // Run game loop until quit
 
-        void firstFight();
-        void displayCharBox(Monster *m);
+        //intro functions
+        void firstFight();         
+        void displayCharBox(Monster *m); //displays fight menu
         void displayHps(Monster *m);
 
-
+        //town functions
         void town();
         void inn();
         void weaponShop();
