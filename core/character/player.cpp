@@ -20,7 +20,6 @@ void Player::attack(Monster *m)
 	int y = m->getHp() - Atk;
 	m->setHp(y);
 	cout << "Hit " << m->getName() << " for " << Atk << " damage!" << endl << endl;
-	//cout << m->getName() << ":" << m->getHp() << endl;
 }
 
 void Player::defend()

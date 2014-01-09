@@ -12,7 +12,8 @@
 
 using namespace std;
 
-World::World() {       
+World::World()
+{       
   Hero = "H";           //strings for graphics
   Mob = "M";
   createMap();          //functions for graphics
@@ -91,6 +92,7 @@ void World::looper()
  string choice;
  createHero();
  cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
+ 
  do
  {
   cout << endl << endl << c->getName() << " : " << c->getHp() << endl << endl;
@@ -98,20 +100,24 @@ void World::looper()
   cin >> choice;
   if(c->getHp() <= 0)
     mc = 2;
-  if(choice == "search")
+
+  if(choice == "1" || choice == "search")
   {
     randomMoveBoth();
   }
-  else if (choice == "town")
+
+  else if (choice == "2" || choice == "town")
   {
     cout << endl <<"Returning to town" << endl << endl << endl;
     town();
   }
-  else if (choice == "quit")
+
+  else if (choice == "3" || choice == "quit")
   {
     cout << endl << "Thanks for playing... Goodbye!" << endl << endl;
     mc = 2;
   }
+
  }
  while(mc == 1);
 }
@@ -121,8 +127,7 @@ void World::fight(Monster *m)
   int x, y, cc=3;
   string choice;
   string enter;
- //Player *c = new Player; 
- //Monster *d = new Monster;
+
   do
   {
     srand(time(NULL));
@@ -142,14 +147,26 @@ void World::fight(Monster *m)
     cout << "What would you like to do?" << endl;
     //cout << "1.attack" << endl << "2.run" << endl << "3.defend" << endl;
     cin >> choice;
-    if(choice == "attack")
+    if(choice == "1" || choice == "attack")
     {
       int b = rand()%100+1;
       cout << endl << "Player attacks the moonstar" << endl << endl << endl;
       c->attack(m);
       m->retaliate(c);
     }
-    else if(choice == "run")
+
+    else if(choice == "2" || choice == "defend")
+    {
+      cout << endl <<"Defending!" << endl << endl << endl;
+      int x = c->getDef();
+      x= x*2;
+      c->setDef(x);
+      m->retaliate(c);
+      x=x/2;
+      c->setDef(x);
+    }
+
+    else if(choice == "3" || choice == "run")
     {
       int b = rand()%100+1;
       cout << endl <<"Player runs like little girl" << endl << endl;
@@ -171,16 +188,6 @@ void World::fight(Monster *m)
       cout << "Failed to run!" <<endl;
       m->retaliate(c);
       }
-    }
-    else if(choice == "defend")
-    {
-      cout << endl <<"Defending!" << endl << endl << endl;
-      int x = c->getDef();
-      x= x*2;
-      c->setDef(x);
-      m->retaliate(c);
-      x=x/2;
-      c->setDef(x);
     }
     else
       cout << "Error! incorrect entry, please try again" << endl;
@@ -285,10 +292,11 @@ cout << "After what seems like hours you finally see a light shining through the
 cin >> enter;
 cout << "Bloody and Bruised, you collapse upon entering the town. The last thing you hear are the ravens cawing" << endl << endl;
 cin >> enter;
-cout << string(12, '\n');
+cout << string(15, '\n');
 cout << endl << endl << endl << endl <<  "Darkness.." << endl << endl << endl << endl;  //insert birds ascii
 cin >> enter;
-cout << "You wake up in a soft bed of hay" << endl << endl;
+cout << string(15, '\n');
+cout << "You wake up in a soft bed of hay" << string(5,'\n');
 c->setHp(20);
 cout << "????:" << endl;
 cout << "Awake are we? Ye stumbled in here lookin foul and just fell over..." << endl;
@@ -308,7 +316,7 @@ void World::displayCharBox(Monster *m)
 {
   cout << endl << endl;
   cout << " ______________________________________________________________" << endl;
-  cout << "| Hero                            Enemy                        |" << endl;
+  cout << "| Hero   Lv:" << c->getLevel() << "                     Enemy                        |" << endl;
   cout << "| " << c->getName() << "                           " << m->getName() << "                      |" << endl;
   displayHps(m);
   cout << "|                                                              |" << endl;
@@ -330,7 +338,7 @@ void World::displayHps(Monster *m)
       cout << "/";
       cc++;
   }
-  if(cc <25)
+  if(cc < 25)
   {
     for(sc = 25; sc > cc; sc--)
       cout << " ";
@@ -356,23 +364,32 @@ void World::town()
   do
   {
   cout << endl << endl << "Town" << endl << endl << endl;
-  cout << "1.forest" << endl;
-  cout << "2.inn" << endl;
-  //cout << "3.Weapon shop" << endl;
-  //cout << "4.Item shop" << endl << endl;
+  cout << "1. Forest" << endl;
+  cout << "2. Inn" << endl;
+  cout << "3. Gear vendor" << endl;
+  cout << "4. Item shop" << endl << endl;
   cout <<"Choose where to go..." << endl;
-    cin >> tChoice;
-    if(tChoice == "forest")
+  cin >> tChoice;
+    if(tChoice == "1" || tChoice == "forest")
     {
       cc = 2;
       cout << "Entering the forest!" << endl << endl;
     }
-    else if(tChoice == "inn")
+    else if(tChoice == "2" || tChoice == "inn")
     {
       cout << "Heading to the Inn" << endl << endl;
       inn();
     }
-    //else if(tChoice == "weapon")
+    else if(tChoice == "3" || tChoice == "gear")
+    {
+      cout << "You enter the weapons shop" << endl;
+      weaponShop();
+    }
+    else if(tChoice == "4" || tChoice == "item")
+    {
+      cout << "You enter the items shop!" << endl << endl;
+      itemShop();
+    }
     else
       cout <<"Nope, try again" << endl;
 
@@ -389,16 +406,20 @@ void World::inn()
   string iChoice;
   cout <<"The Birdbath" << endl << endl;
   cout <<"1. Rest (recover Hp)" << endl;
-  //cout <<"2. Save" << endl;
+  cout <<"2. Save" << endl;
   cout <<"3. Town" << endl;
   cin >> iChoice;
-  if(iChoice == "rest")
+  if(iChoice == "1" || iChoice == "rest")
     {
     cout << "Hp restored!" << endl << endl << endl;
     int x = c->getmaxHp();
     c->setHp(x);
     }
-  else if(iChoice == "town")
+  else if(iChoice == "2" || iChoice == "save")
+  {
+    cout << "Sorry, not implemented yet :(";
+  }
+  else if(iChoice == "3" || iChoice == "town")
     {
     cout << "Returning to town!" << endl << endl;
     ic = 2;
@@ -408,7 +429,59 @@ void World::inn()
   }while(ic == 1);
 }
 
+void World::weaponShop()
+{
+  int ic = 1;
+  do
+  {
+    string wChoice;
+    cout << string(6, '\n');
+    cout << "The Armory" << endl << endl << endl;
+    cout <<"1. Weapons List" << endl;
+    cout <<"2. Armor List" << endl;
+    cout <<"3. Town" << endl;
+    cin >> wChoice;
+    if(wChoice == "1" || wChoice == "weapons")
+    {
+      cout << "Sorry, not implemented yet :(" << endl;
+    }
+    else if (wChoice == "2" || wChoice == "armor")
+    {
+      cout << "Sorry, not implemented yet :(" << endl;
+    }
+    else if (wChoice == "3" || wChoice == "town")
+    {
+      cout << "Returning to town!" << endl << endl;
+      ic = 3;
+    }
+    else
+      cout << "Nope, try again" << endl;
+  }while(ic == 1);
+}
 
 
-
+void World::itemShop()
+{
+  int ic = 1;
+  do
+  {
+    string iChoice;
+    cout << string(6, '\n');
+    cout << "Le Potionz" << endl << endl << endl;
+    cout << "1. Item List" << endl;
+    cout << "2. Town" << endl;
+    cin >> iChoice;
+    if(iChoice == "1" || iChoice == "item")
+    {
+      cout << "Sorry, not implemented yet :(" << endl;
+    }
+    else if(iChoice == "2" || iChoice == "town")
+    {
+      cout << "Returning to town!" << endl << endl;
+      ic = 3;
+    }
+    else
+      cout <<"Nope, try again" << endl;
+  }while(ic == 1);
+}
 
