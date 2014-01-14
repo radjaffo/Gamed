@@ -48,6 +48,7 @@ class World {
         void inn();
         void weaponShop();
         void itemShop();
+        void weaponList();
         /* Future
 
         // Game Loop Definitions

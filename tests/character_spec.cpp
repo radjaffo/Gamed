@@ -3,6 +3,7 @@
 
 
 #include "../core/character/character.h"
+#include "../core/world.h"
 
 
 using namespace std;
@@ -40,3 +41,5 @@ TEST(Character, setId)
 	EXPECT_EQ(b->getID(), c);
 
 }
+
+Test(World, weaponList)

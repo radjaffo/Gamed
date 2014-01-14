@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 
 #include "world.h"
 #include "character/character.h"
@@ -90,6 +91,7 @@ void World::looper()
 {
  int x, y, mc = 1;
  string choice;
+ weaponList();
  createHero();
  cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
@@ -266,10 +268,12 @@ firstFight();
 
 void World::firstFight()
 {
+  char enter;
   cout << "a then enter through pauses"; //gotta find a better way to do this
-  string enter;
+  cin >> enter;
+  cin.ignore();
   cout << endl << endl <<"You wake up after a hefty night of ... completely confused with an empty stomachache..." << endl;
-  enter = cin.get();  //nope
+  cin >> enter;  //nope
   cout << "No time to think... Above you stands a lone goblin with brandishing a leg of lamb!" << endl;
   cin >> enter;
   cout << "You pick up a nearby bone and charge the goblin!" << endl;
@@ -443,7 +447,8 @@ void World::weaponShop()
     cin >> wChoice;
     if(wChoice == "1" || wChoice == "weapons")
     {
-      cout << "Sorry, not implemented yet :(" << endl;
+      cout << endl << "Weapons" << endl;
+      weaponList();
     }
     else if (wChoice == "2" || wChoice == "armor")
     {
@@ -485,3 +490,27 @@ void World::itemShop()
   }while(ic == 1);
 }
 
+void World::weaponList()
+{
+  string weps;
+  int wID;
+  int wAtk;
+
+  ifstream inFile;
+  inFile.open("/Users/radjaffo/code/Gamed/core/weapons.txt"); //this doesn't port but...
+  //system("pwd");  test to see what root folder is
+  
+  if(inFile.is_open())
+  {
+
+    while(getline(inFile,weps))
+    {
+      cout << weps << '\n';
+    }
+  inFile.close();
+  }
+
+  else 
+    cout << "Unable to open file";
+
+}
