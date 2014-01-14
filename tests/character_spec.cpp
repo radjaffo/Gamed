@@ -43,3 +43,14 @@ TEST(Character, setId)
 }
 
 Test(World, weaponList)
+{
+	World *c = new World;
+
+	string weapons = "000 nope nope";
+	string weps = "001 Dagger 01";	//expected result 001
+
+	EXPECT_EQ(c->weaponList(), weapons); 		//expected to fail
+
+	EXPECT_EQ(c->weaponList(), weps);
+
+}

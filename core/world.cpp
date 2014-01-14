@@ -91,7 +91,7 @@ void World::looper()
 {
  int x, y, mc = 1;
  string choice;
- weaponList();
+ //itemList(); //load file tester
  createHero();
  cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
@@ -478,7 +478,8 @@ void World::itemShop()
     cin >> iChoice;
     if(iChoice == "1" || iChoice == "item")
     {
-      cout << "Sorry, not implemented yet :(" << endl;
+      cout << "Items" << endl;
+      itemList();
     }
     else if(iChoice == "2" || iChoice == "town")
     {
@@ -497,7 +498,7 @@ void World::weaponList()
   int wAtk;
 
   ifstream inFile;
-  inFile.open("/Users/radjaffo/code/Gamed/core/weapons.txt"); //this doesn't port but...
+  inFile.open("core/databank/weapons.txt");
   //system("pwd");  test to see what root folder is
   
   if(inFile.is_open())
@@ -513,4 +514,23 @@ void World::weaponList()
   else 
     cout << "Unable to open file";
 
+}
+
+void World::itemList()
+{
+  string items;
+
+  ifstream inFile;
+  inFile.open("core/databank/itemlist.txt");
+  if(inFile.is_open())
+  {
+    while(getline(inFile,items))
+    {
+      cout << items << '\n';
+    }
+  inFile.close();
+  }
+  
+  else
+    cout << "Error! Unable to open file" << endl;
 }

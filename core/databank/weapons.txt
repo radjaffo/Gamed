@@ -1,10 +1,11 @@
-001 Dagger 01
-002 Bow 02
-003 Pitchfork 03
-004 Sword 05
-005 Axe 07
-006 Xbow 10
-007 Gutripper 15
-008 Facemelter 20
-009 Spiked flang 25
-010 Wdestroyer 100
+Num Name   	Atk
+001 Dagger 	01
+002 Bow 	02
+003 Pitchfork	03
+004 Sword 	05
+005 Axe 	07
+006 Xbow 	10
+007 Gutripper 	15
+008 Facemelter 	20
+009 Spiked f 	25
+010 Wdestroyer  100
