@@ -91,7 +91,7 @@ void World::looper()
 {
  int x, y, mc = 1;
  string choice;
- //itemList(); //load file tester
+ weaponList(); //load file tester
  createHero();
  cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
@@ -494,19 +494,25 @@ void World::itemShop()
 void World::weaponList()
 {
   string weps;
-  int wID;
+  int wID[9];
   int wAtk;
+  int wGold;
+  char spacer;
+  int i = 0;
 
   ifstream inFile;
   inFile.open("core/databank/weapons.txt");
   //system("pwd");  test to see what root folder is
-  
   if(inFile.is_open())
   {
-
-    while(getline(inFile,weps))
+    cout << "  " << "Name   " << '\t' << "Atk" << '\t' << "Gold" << endl;
+    while(i<10)
     {
-      cout << weps << '\n';
+      for(i=0; i < 10; i++)
+      {
+      inFile >> wID[i] >> weps >> wAtk >> wGold;
+      cout << wID[i] << " " << weps  << '\t' << wAtk << '\t' << wGold << endl;
+      }
     }
   inFile.close();
   }

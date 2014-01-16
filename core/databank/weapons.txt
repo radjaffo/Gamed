@@ -1,11 +1,10 @@
-Num Name   	Atk
-001 Dagger 	01
-002 Bow 	02
-003 Pitchfork	03
-004 Sword 	05
-005 Axe 	07
-006 Xbow 	10
-007 Gutripper 	15
-008 Facemelter 	20
-009 Spiked f 	25
-010 Wdestroyer  100
+001 Candycane 	01	50
+002 Dagger	02	200
+003 Pitchfork	03	300
+004 Swords 	05	800
+005 Dullaxe 	07	1500
+006 Crossbow 	10	2200
+007 Gutripper 	15	6000
+008 Facemelter 	20	12000
+009 Spiker?	25	17000
+010 Wdestroyer  100	50000

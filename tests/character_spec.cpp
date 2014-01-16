@@ -11,7 +11,8 @@ using namespace std;
 // Generic test to make sure tests are working
 
 
-TEST(Character, getId) {
+TEST(Character, getId)
+ {
     Character *a = new Character;
 
 
@@ -42,14 +43,13 @@ TEST(Character, setId)
 
 }
 
-Test(World, weaponList)
+TEST(World, weaponList)
 {
 	World *c = new World;
+	int weapons = 000;
+	int weps = 001;
 
-	string weapons = "000 nope nope";
-	string weps = "001 Dagger 01";	//expected result 001
-
-	EXPECT_EQ(c->weaponList(), weapons); 		//expected to fail
+	EXPECT_EQ(c->weaponList(), 000); 		//expected to fail
 
 	EXPECT_EQ(c->weaponList(), weps);
 
