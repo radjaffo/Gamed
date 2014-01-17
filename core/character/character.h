@@ -32,7 +32,7 @@ public:
     Character();
     //~Character();
 
-    //Character functions
+    //Hero functions
     int getID();
     void setID(int x);
     void generateID(int x);

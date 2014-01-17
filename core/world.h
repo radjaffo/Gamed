@@ -9,7 +9,7 @@ using namespace std;
 
 class Player;
 class Monster;
-class Weapon;
+
 
 
 class World {
