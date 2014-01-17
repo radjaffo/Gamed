@@ -18,6 +18,7 @@ protected:
     int maxHp;
     int Exp;
     int Level;
+    string wName;
 
 
 public:
@@ -48,7 +49,9 @@ public:
 
     int getLevel();
     void setLevel(int x);
-    
+
+    string getwName();
+    void setwName(string wname);
 };
 
 #endif

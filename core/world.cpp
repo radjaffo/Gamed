@@ -91,7 +91,7 @@ void World::looper()
 {
  int x, y, mc = 1;
  string choice;
- weaponList(); //load file tester
+ //weaponList(); //load file tester
  createHero();
  cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
@@ -449,6 +449,10 @@ void World::weaponShop()
     {
       cout << endl << "Weapons" << endl;
       weaponList();
+      cout << "What would you like to buy?" << endl;
+      int wC;
+      cin >> wC;
+
     }
     else if (wChoice == "2" || wChoice == "armor")
     {
@@ -521,6 +525,33 @@ void World::weaponList()
     cout << "Unable to open file";
 
 }
+
+/*void World::weaponList(int x)
+{
+  string weps;
+  int wID[9];
+  int wAtk;
+  int wGold;
+  char spacer;
+  int i = 0;
+
+  ifstream inFile;
+  inFile.open("core/databank/weapons.txt");
+  //system("pwd");  test to see what root folder is
+  if(inFile.is_open())
+  {
+    while(i<10)
+    {
+      for(i=0; i < 10; i++)
+      {
+      inFile >> wID[i] >> weps >> wAtk >> wGold;
+        if(x == wID[i])
+
+      }
+    }
+  inFile.close();
+}
+*/
 
 void World::itemList()
 {

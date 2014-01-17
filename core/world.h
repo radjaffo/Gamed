@@ -9,6 +9,8 @@ using namespace std;
 
 class Player;
 class Monster;
+class Weapon;
+
 
 class World {
     private:
@@ -23,10 +25,13 @@ class World {
         World();                // Constructor - Create new World
         //~World();               // Destructor - Destroy World
 
+
+        //Main Game function
+        void looper();             
+
         // Setup Map
         bool createMap();
         void displayMap();
-        // Return player and mob positions
         void placeCharacters();
         void createHero();
         string getHero();
@@ -35,15 +40,15 @@ class World {
         void randomMoveBoth();
         
 
+        
         void fight(Monster *m);          
-        void looper();             // Run game loop until quit
 
-        //intro functions
+        //Intro functions
         void firstFight();         
         void displayCharBox(Monster *m); //displays fight menu
         void displayHps(Monster *m);
 
-        //town functions
+        //Town functions
         void town();
         void inn();
         void weaponShop();
@@ -57,12 +62,6 @@ class World {
         int calculateChanges();   // Calculate differences in
         void display();           // Display changes to player
         void input();             // Collect player input
-
-        
-
-        // Player Input
-        void randomMoveBoth();  // Move Player and Mob randomly around board
-        void resetPlayerPosition();
         */
 };
 #endif

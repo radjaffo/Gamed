@@ -81,3 +81,11 @@ void Character::setLevel(int x){
     Level = x;
 }
 
+string Character::getwName(){
+    return wName;
+}
+
+void Character::setwName(string name){
+    wName = name;
+}
+

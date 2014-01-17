@@ -43,14 +43,17 @@ TEST(Character, setId)
 
 }
 
-TEST(World, weaponList)
+TEST(Character, getwName)
 {
-	World *c = new World;
-	int weapons = 000;
-	int weps = 001;
+	Character *c = new Character;
 
-	EXPECT_EQ(c->weaponList(), 000); 		//expected to fail
+	string name = "Stick";
+	string nope = "failing";
 
-	EXPECT_EQ(c->weaponList(), weps);
+	c->setwName(name);
+
+	//EXPECT_EQ(c->getwName(), nope); 		//expected to fail
+
+	EXPECT_EQ(c->getwName(), name);			//expected result "Stick"
 
 }
