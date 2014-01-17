@@ -97,3 +97,19 @@ void Character::setwID(int x){
     wID = x;
 }
 
+int Character::getwAtk(){
+    return wAtk;
+}
+
+void Character::setwAtk(int x){
+    wAtk = x;
+}
+
+int Character::getwGold(){
+    return wGold;
+}
+
+void Character::setwGold(int x){
+    wGold = x;
+}
+

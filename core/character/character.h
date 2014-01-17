@@ -22,6 +22,9 @@ protected:
     //Weapon variables
     int wID;
     string wName;
+    int wAtk;
+    int wGold;
+
 
 
 
@@ -29,6 +32,7 @@ public:
     Character();
     //~Character();
 
+    //Character functions
     int getID();
     void setID(int x);
     void generateID(int x);
@@ -54,12 +58,19 @@ public:
     int getLevel();
     void setLevel(int x);
 
+    //Weapon functions
+    int getwID();
+    void setwID(int x);
+
     string getwName();
     void setwName(string wname);
 
-    int getwID();
-    void setwID(int x);
-    
+    int getwAtk();
+    void setwAtk(int x);
+
+    int getwGold();
+    void setwGold(int x);
+
 };
 
 #endif

@@ -70,3 +70,30 @@ TEST(Character, getwID)
 
 	EXPECT_EQ(d->getwID(), i);			//expected result 0
 }
+
+TEST(Character, getwAtk)
+{
+	Character *a = new Character;
+	int i = 1;
+	int j = 2;
+
+	a->setwAtk(i);
+
+	//EXPECT_EQ(a->getwAtk(), j);				//expected to fail
+
+	EXPECT_EQ(a->getwAtk(), i);			//expected result 1
+	delete a;
+}
+
+TEST(Character, getwGold)
+{
+	Character *a = new Character;
+	int i = 50;
+	int j = 0;
+
+	a->setwGold(i);
+
+	//EXPECT_EQ(a->getwGold(), j);				//expected to fail
+
+	EXPECT_EQ(a->getwGold(), i);			//expected result 50
+}
