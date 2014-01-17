@@ -57,3 +57,16 @@ TEST(Character, getwName)
 	EXPECT_EQ(c->getwName(), name);			//expected result "Stick"
 
 }
+
+TEST(Character, getwID)
+{
+	Character *d = new Character;
+	int i = 0;
+	int j = 2;
+
+	d->setwID(i);
+
+	//EXPECT_EQ(d->getwID(), j);			//expected to fail
+
+	EXPECT_EQ(d->getwID(), i);			//expected result 0
+}

@@ -89,3 +89,11 @@ void Character::setwName(string name){
     wName = name;
 }
 
+int Character::getwID(){
+    return wID;
+}
+
+void Character::setwID(int x){
+    wID = x;
+}
+

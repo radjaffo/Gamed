@@ -12,6 +12,8 @@ Player::Player()
 	maxHp = 20;
 	Exp = 0;
 	Level = 0;
+	wName = "stick";
+	wID = 0;
 }
 
 void Player::attack(Monster *m)

@@ -10,6 +10,7 @@ using namespace std;
 
 class Character {
 protected:
+    //hero variables
     int ID;
     string Name;
     int Atk;
@@ -18,7 +19,10 @@ protected:
     int maxHp;
     int Exp;
     int Level;
+    //Weapon variables
+    int wID;
     string wName;
+
 
 
 public:
@@ -52,6 +56,10 @@ public:
 
     string getwName();
     void setwName(string wname);
+
+    int getwID();
+    void setwID(int x);
+    
 };
 
 #endif

@@ -210,7 +210,7 @@ void World::fight(Monster *m)
     int b = c->getExp();
     b = b+a;
     c->setExp(b);
-    cout << "Exp : " << c->getExp() << endl;
+    cout << "Total Exp: " << c->getExp() << endl;
     //c->checkLevelUp();
     m->setHp(25);
   }
@@ -269,7 +269,7 @@ firstFight();
 void World::firstFight()
 {
   char enter;
-  cout << "a then enter through pauses"; //gotta find a better way to do this
+  cout << "Press a then enter to read more"; //gotta find a better way to do this
   cin >> enter;
   cin.ignore();
   cout << endl << endl <<"You wake up after a hefty night of ... completely confused with an empty stomachache..." << endl;
@@ -503,6 +503,9 @@ void World::weaponList()
   int wGold;
   char spacer;
   int i = 0;
+
+  cout << string(6, '\n');
+  cout << "You are fighting with a " << c->getwName() << "!" << endl << endl;
 
   ifstream inFile;
   inFile.open("core/databank/weapons.txt");
