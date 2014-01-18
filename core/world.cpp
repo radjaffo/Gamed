@@ -555,6 +555,7 @@ void World::weaponList(int x)
   int wGold;
   char spacer;
   int i = 0;
+  string wchoice;
 
   ifstream inFile;
   inFile.open("core/databank/weapons.txt");
@@ -568,11 +569,32 @@ void World::weaponList(int x)
       inFile >> wID[i] >> weps >> wAtk >> wGold;
         if(x == wID[i])
         {
-          int reqGold = wGold;
+          int wepValue = c->getwGold();
+          int reqGold = wGold - wepValue;
            if(goldCheck(reqGold) == true)
-              cout << "Lets buy it!";
+              {
+
+              cout << "Are you sure you want to buy a " << weps << "?" << endl <<"Only weirdos buy those... the vendor mutters to himself" << endl << endl;
+              cout <<"Press 1 to buy, 2 if you dont want that thing afterall" << endl;
+              cin >> wchoice;
+                if(wchoice == "1")
+                {
+                  cout << "Alright, selling your " << c->getwName() << " for " << c->getwGold() << " gold " << endl << endl;
+                  cout << "Vendor" << endl;
+                  cout << "Now gimme " << wGold << " gold for this awesome looking " << weps  << "!" << endl;
+                  int newGold = c->getGold() - reqGold;
+                  c->setGold(newGold);
+                  c->setwName(weps);
+                  c->setwAtk(wAtk);
+                  cout << "Changing gear..." << endl;
+                  cin >> spacer;
+                  cout << "You swing your new " << c->getwName() << " a few times, it feels like a perfect fit for you!" << endl << endl;
+                }
+                else
+                  cout << "I think you broke it..." << endl;
+              }
            else
-              cout <<"Error! Not enough gold";
+              cout <<"Error! Not enough gold" << endl;
         }
       }
     }
