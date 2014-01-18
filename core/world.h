@@ -47,6 +47,7 @@ class World {
         void firstFight();         
         void displayCharBox(Monster *m); //displays fight menu
         void displayHps(Monster *m);
+        void playerStats(Player *c);
 
         //Town functions
         void town();

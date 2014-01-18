@@ -98,7 +98,7 @@ void World::looper()
  do
  {
   cout << endl << endl << c->getName() << " : " << c->getHp() << endl << endl;
-  cout << "1. Search" << endl << "2. Town" << endl << "3. Quit" << endl;
+  cout << "1. Search" << endl << "2. Town" << endl << "3. Stats" << endl << "4. Quit"<< endl;
   cin >> choice;
   if(c->getHp() <= 0)
     mc = 2;
@@ -114,7 +114,13 @@ void World::looper()
     town();
   }
 
-  else if (choice == "3" || choice == "quit")
+  else if(choice == "3" || choice == "stats")
+    {
+    cout << string(15, '\n');
+    playerStats(c);
+    }
+
+  else if (choice == "4" || choice == "quit")
   {
     cout << endl << "Thanks for playing... Goodbye!" << endl << endl;
     mc = 2;
@@ -210,10 +216,10 @@ void World::fight(Monster *m)
     int pExp = c->getExp();
     int pGold = c->getGold();
     int mGold = m->getGold();
-    b = b+a;
-    d = d+e;
-    c->setExp(b);
-    c->setGold(d);
+    pExp = pExp+mExp;
+    pGold = pGold+mGold;
+    c->setExp(pExp);
+    c->setGold(pGold);
     cout << "Total Exp: " << c->getExp() << endl;
     cout << "Total Gold: " << c->getGold() << endl;
     //c->checkLevelUp();
@@ -377,7 +383,8 @@ void World::town()
   cout << "1. Forest" << endl;
   cout << "2. Inn" << endl;
   cout << "3. Gear vendor" << endl;
-  cout << "4. Item shop" << endl << endl;
+  cout << "4. Item shop" << endl;
+  cout << "5. Stats" << endl;
   cout <<"Choose where to go..." << endl;
   cin >> tChoice;
     if(tChoice == "1" || tChoice == "forest")
@@ -397,8 +404,13 @@ void World::town()
     }
     else if(tChoice == "4" || tChoice == "item")
     {
-      cout << "You enter the items shop!" << endl << endl;
+      cout << "You enter the items shop!" << endl;
       itemShop();
+    }
+    else if(tChoice == "5" || tChoice == "stats")
+    {
+    cout << string(15, '\n');
+    playerStats(c);
     }
     else
       cout <<"Nope, try again" << endl;
@@ -595,4 +607,21 @@ bool World::goldCheck(int x)
     return true;
   else
   return false;
+}
+
+void World::playerStats(Player *c)
+{
+  int i = c->getAtk();
+  int x = c->getwAtk();
+  i = x+i;
+  cout << endl << endl;
+  cout << " Stats" << endl;
+  cout << " Hero   Lv:" << c->getLevel() << endl;
+  cout << " " << c->getName()<< endl;
+  cout << " Hp: " << c->getHp() << "/" << c->getmaxHp() << endl;
+  cout << " Weapon: " << c->getwName() << endl;
+  cout << " Atk: " << i << endl;
+  cout << " Def: " << c->getDef() << endl;
+  cout << " Gold: " << c->getGold() << endl;
+  cout << " Exp: " << c->getExp() << endl;
 }
