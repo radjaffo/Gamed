@@ -54,7 +54,10 @@ class World {
         void weaponShop();
         void itemShop();
         void weaponList();
+        void weaponList(int x);
         void itemList();
+        bool goldCheck(int x);
+
         /* Future
 
         // Game Loop Definitions

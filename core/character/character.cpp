@@ -13,6 +13,7 @@ Character::Character() {
     Hp = 0;
     Exp = 0;
     Level = 0;
+    Gold = 0;
     wID = 0;
     wName = "";
     wAtk = 0;
@@ -86,6 +87,14 @@ int Character::getLevel(){
 
 void Character::setLevel(int x){
     Level = x;
+}
+
+int Character::getGold(){
+    return Gold;
+}
+
+void Character::setGold(int x){
+    Gold = x;
 }
 
 string Character::getwName(){

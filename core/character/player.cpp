@@ -14,14 +14,17 @@ Player::Player()
 	Level = 0;
 	wName = "stick";
 	wID = 0;
+	wAtk = 1;
+	wGold = 20;
 }
 
 void Player::attack(Monster *m)
 {
 	cout << "Attacking " << m->getName()  << "..."<< endl << endl;
-	int y = m->getHp() - Atk;
+	int x = Atk + wAtk;
+	int y = m->getHp() - x;
 	m->setHp(y);
-	cout << "Hit " << m->getName() << " for " << Atk << " damage!" << endl << endl;
+	cout << "Hit " << m->getName() << " for " << x << " damage!" << endl << endl;
 }
 
 void Player::defend()

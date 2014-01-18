@@ -204,13 +204,18 @@ void World::fight(Monster *m)
   else if(m->getHp() <= 0)
   { 
     cout << "You win! " << m->getName() << " is defeated!" << endl;
-    cout << "You got " << m->getExp() << " experience "  << "and " <<  "y gold!" << endl << endl;
+    cout << "You got " << m->getExp() << " experience "  << "and " <<  m->getGold() << " gold!" << endl << endl;
     cin >> enter;
-    int a = m->getExp();
-    int b = c->getExp();
+    int mExp = m->getExp();        //can make functions but temp vars work for now
+    int pExp = c->getExp();
+    int pGold = c->getGold();
+    int mGold = m->getGold();
     b = b+a;
+    d = d+e;
     c->setExp(b);
+    c->setGold(d);
     cout << "Total Exp: " << c->getExp() << endl;
+    cout << "Total Gold: " << c->getGold() << endl;
     //c->checkLevelUp();
     m->setHp(25);
   }
@@ -276,7 +281,7 @@ void World::firstFight()
   cin >> enter;  //nope
   cout << "No time to think... Above you stands a lone goblin with brandishing a leg of lamb!" << endl;
   cin >> enter;
-  cout << "You pick up a nearby bone and charge the goblin!" << endl;
+  cout << "You pick up a nearby stick and charge the goblin!" << endl;
   cin >> enter;
 
   cout << string(25, '\n');
@@ -287,6 +292,7 @@ f->setName("Garthan");
 f->setAtk(9);
 f->setDef(3);
 f->setExp(100);
+f->setGold(50);
 fight(f);
 cout << "You grab the leg of lamb from the defeated goblin and devour it bone and all!!!" << endl << endl;
 cin >> enter;
@@ -436,6 +442,7 @@ void World::inn()
 void World::weaponShop()
 {
   int ic = 1;
+  int wC;
   do
   {
     string wChoice;
@@ -450,9 +457,8 @@ void World::weaponShop()
       cout << endl << "Weapons" << endl;
       weaponList();
       cout << "What would you like to buy?" << endl;
-      int wC;
       cin >> wC;
-
+      weaponList(wC);
     }
     else if (wChoice == "2" || wChoice == "armor")
     {
@@ -529,7 +535,7 @@ void World::weaponList()
 
 }
 
-/*void World::weaponList(int x)
+void World::weaponList(int x)
 {
   string weps;
   int wID[9];
@@ -549,12 +555,20 @@ void World::weaponList()
       {
       inFile >> wID[i] >> weps >> wAtk >> wGold;
         if(x == wID[i])
-
+        {
+          int reqGold = wGold;
+           if(goldCheck(reqGold) == true)
+              cout << "Lets buy it!";
+           else
+              cout <<"Error! Not enough gold";
+        }
       }
     }
   inFile.close();
+  }
+  else
+    cout << "Error! Unable to open file" << endl;
 }
-*/
 
 void World::itemList()
 {
@@ -573,4 +587,12 @@ void World::itemList()
   
   else
     cout << "Error! Unable to open file" << endl;
+}
+
+bool World::goldCheck(int x)
+{
+  if(c->getGold() >= x)
+    return true;
+  else
+  return false;
 }
