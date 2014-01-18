@@ -155,6 +155,129 @@ TEST(Character, setDef)
 
 	EXPECT_EQ(a->getDef(), h);
 }
+
+TEST(Character, getHp)
+{
+	Character *a = new Character;
+	int i = a->getHp();					//expected result 0
+
+	//EXPECT_EQ(a->getHp(), 1);			//expected to fail
+	
+	EXPECT_EQ(a->getHp(), 0);
+}
+
+TEST(Character, setHp)
+{
+	Character *a = new Character;
+	int i = 1;
+	int j = 15;
+	int c = 0;
+
+	a->setHp(i);					//expected result 1
+
+	//EXPECT_EQ(a->getHp(), 0);			//expected to fail
+
+	EXPECT_EQ(a->getHp(), 1);
+
+	a->setHp(j);					//expected result 15
+
+	EXPECT_EQ(a->getHp(), 15);
+
+	a->setHp(c);					//expected result 0
+
+	EXPECT_EQ(a->getHp(), c);
+}
+
+TEST(Character, getmaxHp)
+{
+	Character *a = new Character;
+	
+	int i = a->getmaxHp();			//expected result 0
+
+	//EXPECT_EQ(a->getmaxHp(), 1);	//expected to fail
+
+	EXPECT_EQ(a->getmaxHp(), 0);
+}
+
+TEST(Character, setmaxHp)
+{
+	Character *a = new Character;
+	int i = 1;
+	int j = 20;
+	int c = 500;
+
+	a->setmaxHp(i);					//expected result 1
+
+	//EXPECT_EQ(a->getmaxHp(), 0);		//expected to fail
+
+	EXPECT_EQ(a->getmaxHp(), 1);
+
+	a->setmaxHp(j);					//expected result 20
+
+	EXPECT_EQ(a->getmaxHp(), 20);
+
+	a->setmaxHp(c);					//expected result 500
+
+	EXPECT_EQ(a->getmaxHp(), c);
+}
+
+TEST(Character, getExp)
+{
+	Character *a = new Character;
+	
+	int i = a->getExp();			//expected result 0
+
+	//EXPECT_EQ(a->getExp(), 1);		//expected to fail
+
+	EXPECT_EQ(a->getExp(), 0);
+}
+
+TEST(Character, setExp)
+{
+	Character *a = new Character;
+	
+	int i = 1;
+	int j = 15;
+
+	a->setExp(i);					//expected result 1
+
+	//EXPECT_EQ(a->getExp(), 0);		//expected to fail
+	
+	EXPECT_EQ(a->getExp(), 1);
+
+	a->setExp(j);						//expected result 15
+
+	EXPECT_EQ(a->getExp(), j);
+}
+
+TEST(Character, getLevel)
+{
+	Character *a = new Character;
+
+	int i = a->getLevel();				//expected result -
+
+	//EXPECT_EQ(a->getLevel(), 3);		//expected to fail
+
+	EXPECT_EQ(a->getLevel(), 0);
+
+}
+
+TEST(Character, setLevel)
+{
+	Character *a = new Character;
+	int i = 5;
+	int j = 15;
+
+	a->setLevel(i);						//expected result 5
+
+	//EXPECT_EQ(a->getLevel(), 0);		//expected to fail
+
+	EXPECT_EQ(a->getLevel(), 5);
+
+	a->setLevel(j);						//expected result 15
+
+	EXPECT_EQ(a->getLevel(), j);
+}
 TEST(Character, getwName)
 {
 	Character *c = new Character;

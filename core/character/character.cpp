@@ -11,6 +11,13 @@ Character::Character() {
     Atk = 0;
     Def = 0;
     Hp = 0;
+    Exp = 0;
+    Level = 0;
+    wID = 0;
+    wName = "";
+    wAtk = 0;
+    wGold = 0;
+
 }
 
 int Character::getID(){
