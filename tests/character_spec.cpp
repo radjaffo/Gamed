@@ -390,7 +390,106 @@ TEST(Character, getwGold)
 	EXPECT_EQ(a->getwGold(), 0);
 }
 
+TEST(Character, getaID)
+{
+	Character *a = new Character;
+	int i = a->getaID();				//expected result 0
 
+	EXPECT_EQ(i, 0);
+}
+
+TEST(Character, setaID)
+{
+	Character *a = new Character;
+	int i = 1;
+	int j = 10;
+
+	a->setaID(i);						//expected result 1
+
+	//EXPECT_EQ(a->getaID(), 0);		//expected to fail
+
+	EXPECT_EQ(a->getaID(), 1);
+
+	a->setaID(j);						//expected result 10
+
+	EXPECT_EQ(a->getaID(), 10);
+}
+
+TEST(Character, getaName)
+{
+	Character *a = new Character;
+
+	string tmp = a->getaName();			//expected result ""
+
+	EXPECT_EQ(tmp, "");
+}
+
+TEST(Character, setaName)
+{
+	Character *a = new Character;
+	string i = "yep";
+	string temp = "yeppers";
+
+	a->setaName(i);						//expected result "yep"
+
+	//EXPECT_EQ(a->getaName(), "");		//expected to fail
+
+	EXPECT_EQ(a->getaName(), "yep");
+
+	a->setaName(temp);					//expected result "yeppers"
+	
+	EXPECT_EQ(a->getaName(), temp);
+}
+
+TEST(Character, getaDef)
+{
+	Character *a = new Character;
+
+	int i = a->getaDef();				//expected result 0
+
+	EXPECT_EQ(i, 0);
+}
+
+TEST(Character, setaDef)
+{
+	Character *a = new Character;
+	int i = 1;
+	int j = 20;
+
+	a->setaDef(i);						//expected result 1
+
+	//EXPECT_EQ(a->getaDef(), 0);			//expected to fail
+
+	EXPECT_EQ(a->getaDef(), 1);
+
+	a->setaDef(j);						//expected result 20
+
+	EXPECT_EQ(a->getaDef(), j);
+}
+
+TEST(Character, getaGold)
+{
+	Character *a = new Character;
+	
+	int i = a->getaGold();				//expected result 0
+
+	EXPECT_EQ(i, 0);
+}
+
+TEST(Character, setaGold)
+{
+	Character *a = new Character;
+	int i = 200;
+	int j = 10000;
+
+	a->setaGold(i);						//expected result 200
+
+	EXPECT_EQ(a->getaGold(), 200);
+
+	a->setaGold(j);						//expected result 10000
+
+	EXPECT_EQ(a->getaGold(), j);
+}
 /* Nope
 TEST(World, goldCheck)
 {

@@ -26,7 +26,11 @@ protected:
     string wName;
     int wAtk;
     int wGold;
-
+    //Armor variables
+    int aID;
+    string aName;
+    int aDef;
+    int aGold;
 
 
 
@@ -78,6 +82,20 @@ public:
 
     int getwGold();
     void setwGold(int x);
+
+    //Armor functions
+    int getaID();
+    void setaID(int x);
+
+    string getaName();
+    void setaName(string name);
+
+    int getaDef();
+    void setaDef(int x);
+
+    int getaGold();
+    void setaGold(int x);
+    
 
 };
 

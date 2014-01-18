@@ -20,6 +20,10 @@ Character::Character() {
     wName = "";
     wAtk = 0;
     wGold = 0;
+    aID = 0;
+    aName = "";
+    aDef = 0;
+    aGold = 0;
 
 }
 
@@ -137,5 +141,37 @@ int Character::getwGold(){
 
 void Character::setwGold(int x){
     wGold = x;
+}
+
+int Character::getaID(){
+    return aID;
+}
+
+void Character::setaID(int x){
+    aID = x;
+}
+
+string Character::getaName(){
+    return aName;
+}
+
+void Character::setaName(string name){
+    aName = name;
+}
+
+int Character::getaDef(){
+    return aDef;
+}
+
+void Character::setaDef(int x){
+    aDef = x;
+}
+
+int Character::getaGold(){
+    return aGold;
+}
+
+void Character::setaGold(int x){
+    aGold = x;
 }
 
