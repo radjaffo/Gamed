@@ -12,6 +12,7 @@ Monster::Monster()
 	Hp = 25;
 	maxHp = 25;
 	Exp = 50;
+	Gold = 50;
 }
 
 void Monster::retaliate(Player *p)

@@ -16,11 +16,12 @@ Player::Player()
 	wID = 0;
 	wAtk = 1;
 	wGold = 20;
+	nextLevel = 100;
 }
 
 void Player::attack(Monster *m)
 {
-	cout << "Attacking " << m->getName()  << "..."<< endl << endl;
+	cout << "Attacking " << m->getName()  << " with your mighty " << wName << " ..."<< endl << endl;
 	int x = Atk + wAtk;
 	int y = m->getHp() - x;
 	m->setHp(y);

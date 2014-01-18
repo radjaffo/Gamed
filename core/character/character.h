@@ -19,6 +19,7 @@ protected:
     int maxHp;
     int Exp;
     int Level;
+    int nextLevel;
     int Gold;
     //Weapon variables
     int wID;
@@ -59,9 +60,12 @@ public:
     int getLevel();
     void setLevel(int x);
 
+    int getnextLevel();
+    void setnextLevel(int x);
+
     int getGold();
     void setGold(int x);
-    
+
     //Weapon functions
     int getwID();
     void setwID(int x);

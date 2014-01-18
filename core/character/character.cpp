@@ -10,9 +10,11 @@ Character::Character() {
     Name = "";
     Atk = 0;
     Def = 0;
+    maxHp = 0;
     Hp = 0;
     Exp = 0;
     Level = 0;
+    nextLevel = 0;
     Gold = 0;
     wID = 0;
     wName = "";
@@ -87,6 +89,14 @@ int Character::getLevel(){
 
 void Character::setLevel(int x){
     Level = x;
+}
+
+int Character::getnextLevel(){
+    return nextLevel;
+}
+
+void Character::setnextLevel(int x){
+    nextLevel = x;
 }
 
 int Character::getGold(){

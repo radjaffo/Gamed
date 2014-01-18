@@ -221,7 +221,7 @@ void World::fight(Monster *m)
     c->setExp(pExp);
     c->setGold(pGold);
     cout << "Total Exp: " << c->getExp() << endl;
-    cout << "Total Gold: " << c->getGold() << endl;
+    cout << "Total Gold: " << c->getGold() << endl << endl;
     //c->checkLevelUp();
     m->setHp(25);
   }
@@ -523,8 +523,8 @@ void World::weaponList()
   int i = 0;
 
   cout << string(6, '\n');
-  cout << "You are fighting with a " << c->getwName() << "!" << endl << endl;
-
+  cout << "You are fighting with a " << c->getwName() << "!" << endl;
+  cout << "Gold: " << c->getGold() << endl << endl;
   ifstream inFile;
   inFile.open("core/databank/weapons.txt");
   //system("pwd");  test to see what root folder is

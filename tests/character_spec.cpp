@@ -196,7 +196,7 @@ TEST(Character, getmaxHp)
 
 	//EXPECT_EQ(a->getmaxHp(), 1);	//expected to fail
 
-	EXPECT_EQ(a->getmaxHp(), 0);
+	EXPECT_EQ(i, 0);
 }
 
 TEST(Character, setmaxHp)
@@ -229,7 +229,7 @@ TEST(Character, getExp)
 
 	//EXPECT_EQ(a->getExp(), 1);		//expected to fail
 
-	EXPECT_EQ(a->getExp(), 0);
+	EXPECT_EQ(i, 0);
 }
 
 TEST(Character, setExp)
@@ -258,7 +258,7 @@ TEST(Character, getLevel)
 
 	//EXPECT_EQ(a->getLevel(), 3);		//expected to fail
 
-	EXPECT_EQ(a->getLevel(), 0);
+	EXPECT_EQ(i, 0);
 
 }
 
@@ -277,6 +277,31 @@ TEST(Character, setLevel)
 	a->setLevel(j);						//expected result 15
 
 	EXPECT_EQ(a->getLevel(), j);
+}
+
+TEST(Character, getnextLevel)
+{
+	Character *a = new Character;
+	int i = a->getnextLevel();			//expected result 0
+
+	EXPECT_EQ(i, 0);
+}
+
+TEST(Character, setnextLevel)
+{
+	Character *a = new Character;
+	int i = 100;
+	int j = 1000;
+
+	a->setnextLevel(i);					//expected result 100
+
+	//EXPECT_EQ(a->getnextLevel(), 0);	//expected to fail
+
+	EXPECT_EQ(a->getnextLevel(), 100);
+
+	a->setnextLevel(j);					//expected result 1000
+
+	EXPECT_EQ(a->getnextLevel(), j);
 }
 
 TEST(Character, getGold)
@@ -364,6 +389,7 @@ TEST(Character, getwGold)
 
 	EXPECT_EQ(a->getwGold(), 0);
 }
+
 
 /* Nope
 TEST(World, goldCheck)
