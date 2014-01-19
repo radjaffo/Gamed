@@ -232,8 +232,9 @@ void World::fight(Monster *m)
 void World::createHero()
 {
   string name, statAdjuster;
-
   cout << string(25, '\n');
+  displayBird();  
+  cout << endl << endl;
   cout <<"Welcome to the world, what should we call you?" << endl;
   cin >> name;
   cout << "Alright, " << name << " welcome to Gamed" << endl << endl;
@@ -646,4 +647,24 @@ void World::playerStats(Player *c)
   cout << " Def: " << c->getDef() << endl;
   cout << " Gold: " << c->getGold() << endl;
   cout << " Exp: " << c->getExp() << endl;
+}
+
+void World::displayBird()
+{
+  string bird;
+
+  ifstream inFile;
+  inFile.open("assets/birds.txt");
+  if(inFile.is_open())
+  {
+    while(getline(inFile,bird))
+    {
+      cout << bird << '\n';
+    }
+  inFile.close();
+  }
+  
+  else
+    cout << "Error! Unable to open file" << endl;
+
 }

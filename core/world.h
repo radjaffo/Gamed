@@ -44,6 +44,7 @@ class World {
         void fight(Monster *m);          
 
         //Intro functions
+        void displayBird();
         void firstFight();         
         void displayCharBox(Monster *m); //displays fight menu
         void displayHps(Monster *m);
