@@ -12,11 +12,14 @@ Player::Player()
 	maxHp = 20;
 	Exp = 0;
 	Level = 0;
-	wName = "stick";
+	wName = "Stick";
 	wID = 0;
 	wAtk = 1;
 	wGold = 20;
 	nextLevel = 100;
+	aName = "Ragz";
+	aDef = 1;
+	aGold = 20;
 }
 
 void Player::attack(Monster *m)

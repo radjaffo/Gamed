@@ -455,7 +455,6 @@ void World::inn()
 void World::weaponShop()
 {
   int ic = 1;
-  int wC;
   do
   {
     string wChoice;
@@ -467,6 +466,7 @@ void World::weaponShop()
     cin >> wChoice;
     if(wChoice == "1" || wChoice == "weapons")
     {
+      int wC;
       cout << endl << "Weapons" << endl;
       weaponList();
       cout << "What would you like to buy?" << endl;
@@ -475,7 +475,12 @@ void World::weaponShop()
     }
     else if (wChoice == "2" || wChoice == "armor")
     {
-      cout << "Sorry, not implemented yet :(" << endl;
+      int aC;
+      cout << endl << "Armor" << endl;
+      armorList();
+      cout << "What would you like to buy?" << endl;
+      cin >> aC;
+      armorList(aC);
     }
     else if (wChoice == "3" || wChoice == "town")
     {
@@ -520,10 +525,9 @@ void World::weaponList()
   int wID[9];
   int wAtk;
   int wGold;
-  char spacer;
   int i = 0;
 
-  cout << string(6, '\n');
+  cout << string(7, '\n');
   cout << "You are fighting with a " << c->getwName() << "!" << endl;
   cout << "Gold: " << c->getGold() << endl << endl;
   ifstream inFile;
@@ -574,7 +578,7 @@ void World::weaponList(int x)
           int reqGold = wGold - wepValue;
            if(goldCheck(reqGold) == true)
               {
-
+              cout << "Vendor" << endl;
               cout << "Are you sure you want to buy a " << weps << "?" << endl <<"Only weirdos buy those... the vendor mutters to himself" << endl << endl;
               cout <<"Press 1 to buy, 2 if you dont want that thing afterall" << endl;
               cin >> wchoice;
@@ -592,7 +596,11 @@ void World::weaponList(int x)
                   cout << "You swing your new " << c->getwName() << " a few times, it feels like a perfect fit for you!" << endl << endl;
                 }
                 else
-                  cout << "I think you broke it..." << endl;
+                  {
+                  cout << endl << "Vendor" << endl;
+                  cout << "Not buying? Then get out!" << endl;
+                  cout << "Returning to town" << endl;
+                  }
               }
            else
               cout <<"Error! Not enough gold" << endl;
@@ -637,14 +645,18 @@ void World::playerStats(Player *c)
   int i = c->getAtk();
   int x = c->getwAtk();
   i = x+i;
+  int j = c->getDef();
+  int k = c->getaDef();
+  j = j+k;
   cout << endl << endl;
   cout << " Stats" << endl;
   cout << " Hero   Lv:" << c->getLevel() << endl;
   cout << " " << c->getName()<< endl;
   cout << " Hp: " << c->getHp() << "/" << c->getmaxHp() << endl;
   cout << " Weapon: " << c->getwName() << endl;
+  cout << " Armor: " << c->getaName() << endl;
   cout << " Atk: " << i << endl;
-  cout << " Def: " << c->getDef() << endl;
+  cout << " Def: " << j << endl;
   cout << " Gold: " << c->getGold() << endl;
   cout << " Exp: " << c->getExp() << endl;
 }
@@ -666,5 +678,84 @@ void World::displayBird()
   
   else
     cout << "Error! Unable to open file" << endl;
+
+}
+
+
+void World::armorList()
+{
+  string armor;
+  ifstream inFile;
+
+  cout << string(7, '\n');
+  cout << "  " << "Name   " << '\t' << "Def" << '\t' << "Gold" << endl;
+  inFile.open("core/databank/armor.txt");
+  if(inFile.is_open())
+  {
+    while(getline(inFile,armor))
+    {
+      cout << armor << '\n';
+    }
+  inFile.close();
+  }
+
+  else
+    cout << "Error! Unable to open file" << endl;
+}
+
+void World::armorList(int x)
+{
+  string armor;
+  int aID[5];
+  int aDef;
+  int aGold;
+  string aChoice;
+  char spacer;
+  ifstream inFile;
+
+  inFile.open("core/databank/armor.txt");
+  if(inFile.is_open())
+  {
+    for(int i = 0; i < 6; i++)
+    {
+      inFile >> aID[i] >> armor >> aDef >> aGold;
+      if (x == aID[i])
+      {
+        int armorValue = c->getaGold();
+        int reqGold = aGold - armorValue;
+        if(goldCheck(reqGold) == true)
+        {
+          cout << "Vendor" << endl;
+          cout << "Theres no way you want this raggedy old " << armor << " is there?" << endl;
+          cout <<"Press 1 to buy, 2 if you dont want that thing afterall" << endl;
+          cin >> aChoice;
+            if(aChoice == "1")
+            {
+              cout << "Alright, selling your " << c->getaName() << " for " << c->getaGold() << " gold " << endl << endl;
+              cout << "Vendor" << endl;
+              cout << "Now gimme " << aGold << " gold for this terrible looking " << armor  << "!" << endl;
+              int newGold = c->getGold() - reqGold;
+              c->setGold(newGold);
+              c->setaName(armor);
+              c->setaDef(aDef);
+              cout << "Changing gear..." << endl;
+              cin >> spacer;
+              cout << "You don your new " << armor << " and dust off the cobwebs" << endl;
+            }
+            else
+              { 
+              cout << endl << "Vendor" << endl;
+              cout << "Not buying? Then get out!" << endl;
+              cout << "Returning to town" << endl;
+              }
+        }
+        else
+          cout << "Error! Not enough gold" << endl;
+      }
+    }
+  inFile.close();
+  }
+  else
+  cout << "Error! Unable to open file" << endl;
 
 }

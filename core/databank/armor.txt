@@ -1,0 +1,6 @@
+1 Cloth 	02	50
+2 Leather	03	500
+3 HardLeather	04	2000
+4 Chainmail	06	10000
+5 Platemail	10	50000
+6 Wsaver	50	200000	

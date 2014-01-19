@@ -59,6 +59,8 @@ class World {
         void weaponList(int x);
         void itemList();
         bool goldCheck(int x);
+        void armorList();
+        void armorList(int x);
 
         /* Future
 

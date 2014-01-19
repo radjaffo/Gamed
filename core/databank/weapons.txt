@@ -7,4 +7,4 @@
 007 Gutripper 	35	6000
 008 Facemelter 	50	12000
 009 Spiker?	70	17000
-010 Wdestroyer  100	50000
+010 Wdestroyer  100	200000
