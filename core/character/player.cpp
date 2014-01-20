@@ -12,6 +12,7 @@ Player::Player()
 	maxHp = 20;
 	Exp = 0;
 	Level = 0;
+	Gold = 0;
 	wName = "Stick";
 	wID = 0;
 	wAtk = 1;

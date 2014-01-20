@@ -61,6 +61,7 @@ class World {
         bool goldCheck(int x);
         void armorList();
         void armorList(int x);
+        void saveHero(Player *c);
 
         /* Future
 

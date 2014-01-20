@@ -231,50 +231,59 @@ void World::fight(Monster *m)
 
 void World::createHero()
 {
-  string name, statAdjuster;
+  string name, statAdjuster, vet;
   cout << string(25, '\n');
   displayBird();  
   cout << endl << endl;
   cout <<"Welcome to the world, what should we call you?" << endl;
   cin >> name;
-  cout << "Alright, " << name << " welcome to Gamed" << endl << endl;
   c->setName(name);
-  cout << endl;
-  cout << "You have 3 stat points to spend, choose wisely" << endl << endl;
-  int stats = 3;
-  do{
-  cout << c->getName() << endl << "Atk : " << c->getAtk() << endl << "Def : " << c->getDef() << endl;
-  cout << "Hp : " << c->getHp() << endl;
-  cout << "atk = atk, def = def, hp = hp" << endl << endl;
-  cout << "Put 1 stat point into... " << endl;
-  cin >> statAdjuster;
-  if(statAdjuster == "atk")
-    {
-      int x = c->getAtk();
-      x++;
-      c->setAtk(x);
-      cout << endl << "Atk raised by 1!" << endl << endl;
-      stats--;
-    }
-  else if (statAdjuster == "def")
+  cout << "Alright, " << name << " welcome to Gamed" << endl << endl;
+  cout << "Are you new to Gamed?" << endl;
+  cin >> vet;
+  if(vet == "no")
+    cout << "Sorry not implemented yet :(" << endl;
+    //loadHero(name);
+  else
   {
-    int x = c->getDef();
-    x++;
-    c->setDef(x);
-    cout << endl << "Def raised by 1!" << endl << endl;
-    stats--;
+    cout << endl;
+    cout << "You have 3 stat points to spend, choose wisely" << endl << endl;
+    int stats = 3;
+      do
+      {
+        cout << c->getName() << endl << "Atk : " << c->getAtk() << endl << "Def : " << c->getDef() << endl;
+        cout << "Hp : " << c->getHp() << endl;
+        cout << "atk = atk, def = def, hp = hp" << endl << endl;
+        cout << "Put 1 stat point into... " << endl;
+        cin >> statAdjuster;
+          if(statAdjuster == "atk")
+          {
+            int x = c->getAtk();
+            x++;
+            c->setAtk(x);
+            cout << endl << "Atk raised by 1!" << endl << endl;
+            stats--;
+          }
+          else if (statAdjuster == "def")
+          {
+            int x = c->getDef();
+            x++;
+            c->setDef(x);
+            cout << endl << "Def raised by 1!" << endl << endl;
+            stats--;
+          }
+          else if (statAdjuster == "hp")
+          {
+            int x = c->getHp();
+            x++;
+            c->setHp(x);
+            cout << endl << "Hp raised by 1!" << endl << endl;
+            stats--;
+          }
+          else 
+            cout << endl << "Error! Incorrect entry, please try again" << endl << endl;
+      } while (stats > 0);
   }
-  else if (statAdjuster == "hp")
-  {
-    int x = c->getHp();
-    x++;
-    c->setHp(x);
-    cout << endl << "Hp raised by 1!" << endl << endl;
-    stats--;
-  }
-  else 
-    cout << endl << "Error! Incorrect entry, please try again" << endl << endl;
-} while (stats > 0);
 firstFight();
 }
 
@@ -440,7 +449,7 @@ void World::inn()
     }
   else if(iChoice == "2" || iChoice == "save")
   {
-    cout << "Sorry, not implemented yet :(";
+    saveHero(c);
   }
   else if(iChoice == "3" || iChoice == "town")
     {
@@ -741,6 +750,7 @@ void World::armorList(int x)
               cout << "Changing gear..." << endl;
               cin >> spacer;
               cout << "You don your new " << armor << " and dust off the cobwebs" << endl;
+              cout << "The armor is a little large but it'll do!" << endl;
             }
             else
               { 
@@ -759,3 +769,37 @@ void World::armorList(int x)
   cout << "Error! Unable to open file" << endl;
 
 }
+
+void World::saveHero(Player *c)
+{
+  string saver = c->getName();
+  string txt = ".txt";
+  saver = saver + txt;
+  string name = c->getName();
+  int atk = c->getAtk();
+  int def = c->getDef();
+  int hp = c->getHp();
+  int maxhp = c->getmaxHp();
+  int experience = c->getExp();
+  int level = c->getLevel();
+  int nextlevel = c->getnextLevel();
+  int gold = c->getGold();
+  string wname = c->getwName();
+  int watk = c->getwAtk();
+  int wgold = c->getwGold();
+  string aname = c->getaName();
+  int adef = c->getaDef();
+  int agold = c->getaGold();
+
+
+  ofstream outFile;
+  outFile.open (saver.c_str());
+  outFile << "Writing this to a files.\n";
+  outFile << name << endl << atk  << endl << hp  << endl << maxhp << endl;
+  outFile << experience << endl << level << endl << nextlevel << endl << gold << endl;
+  outFile << wname << endl << watk << endl << wgold << endl << aname << endl << adef << endl << agold << endl;
+  cout << "Saving you hero!" << endl;
+  cout << saver;
+  outFile.close();
+}
+

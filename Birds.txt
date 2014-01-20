@@ -1,0 +1,15 @@
+Writing this to a files.
+Birds
+8
+20
+20
+100
+0
+100
+50
+Stick
+1
+20
+Ragz
+1
+20
