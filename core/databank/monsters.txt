@@ -1,13 +1,13 @@
-100 test 01 01 01
-101 goblin 01 01 15
-102 wolf 02 02 17
-103 skeleton 03 01 20
-104 orc 04 02 25
-105 wisp 02 02 30
-106 shrimp 01 01 20
-107 undeadmage 01 04 35
-108 temp 01 01 01
-109 temp 01 01 01
-110 Garthax 05 05 100
-111 Bajebbers 10 10 200
-112 Threepwodz 15 15 20
+0 BooM 05 05 25 25 25
+1 goblin 08 05 15 50 50
+2 wolf 10 10 10 75 50
+3 skeleton 12 12 25 75 75 
+4 orc 06 15 25 100 75
+5 wisp 02 02 30
+6 shrimp 01 01 20
+7 undeadmage 01 04 35
+8 temp 01 01 01
+9 temp 01 01 01
+10 Garthax 05 05 100
+11 Bajebbers 10 10 200
+12 Threepwodz 15 15 20

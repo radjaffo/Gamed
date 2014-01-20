@@ -49,6 +49,7 @@ class World {
         void displayCharBox(Monster *m); //displays fight menu
         void displayHps(Monster *m);
         void playerStats(Player *c);
+        void loadHero(string name);
 
         //Town functions
         void town();
@@ -62,7 +63,10 @@ class World {
         void armorList();
         void armorList(int x);
         void saveHero(Player *c);
-        void loadHero(string name);
+
+        //Forest functions
+        void loadMonster(int x);
+
 
         /* Future
 

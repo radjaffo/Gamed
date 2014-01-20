@@ -27,6 +27,10 @@ void Player::attack(Monster *m)
 {
 	cout << "Attacking " << m->getName()  << " with your mighty " << wName << " ..."<< endl << endl;
 	int x = Atk + wAtk;
+	int j = m->getDef();
+	x = x-j;
+	if(x <= 0)
+		x = 1;
 	int y = m->getHp() - x;
 	m->setHp(y);
 	cout << "Hit " << m->getName() << " for " << x << " damage!" << endl << endl;

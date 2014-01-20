@@ -76,7 +76,12 @@ void World::randomMoveBoth()
   if (Map[x][y] == Map[a][b])
   {
     cout << "Monster encountered!! Time to fight!" << endl;
-   fight(d);
+    if(c->getLevel() < 2)
+    int a = rand()%4;
+    else
+    int a = rand()%8;
+    loadMonster(a);
+    fight(d);
   }
 }
 
@@ -847,3 +852,42 @@ void World::loadHero(string name)
   c->setaGold(agold);
   inFile.close();
 }
+
+void World::loadMonster(int x)
+{
+  int mID[13];
+  string name;
+  int atk;
+  int def;
+  int hp;
+  int experience;
+  int gold;
+
+  ifstream inFile;
+  inFile.open("core/databank/monsters.txt");
+  if(inFile.is_open())
+  {
+    for(int i=0; i < 13; i++)
+    {
+      inFile >> mID[i] >> name >> atk >> def >> hp >> gold >> experience;
+      if(x == mID[i])
+      {
+        cout << name << "charges you!" << endl;
+        d->setName(name);
+        d->setAtk(atk);
+        d->setDef(def);
+        d->setHp(hp);
+        d->setGold(gold);
+        d->setExp(experience);
+      }
+      else
+        cout <<"Nope" << endl;
+    }
+  inFile.close();
+  }
+  else
+    cout <<"Error opening file" << endl;
+}
+
+
+
