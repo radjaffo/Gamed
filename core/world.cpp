@@ -93,7 +93,7 @@ void World::looper()
  string choice;
  //weaponList(); //load file tester
  createHero();
- cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
+ //cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
  do
  {
@@ -239,11 +239,14 @@ void World::createHero()
   cin >> name;
   c->setName(name);
   cout << "Alright, " << name << " welcome to Gamed" << endl << endl;
-  cout << "Are you new to Gamed?" << endl;
+  cout << "Are you new to Gamed? (type no to load)" << endl;
   cin >> vet;
   if(vet == "no")
-    cout << "Sorry not implemented yet :(" << endl;
-    //loadHero(name);
+    {
+    loadHero(name);
+    cout << "You wake up in a field next to town feeling refreshed, welcome back " << c->getName();
+    town();
+    }
   else
   {
     cout << endl;
@@ -283,8 +286,8 @@ void World::createHero()
           else 
             cout << endl << "Error! Incorrect entry, please try again" << endl << endl;
       } while (stats > 0);
+  firstFight();    
   }
-firstFight();
 }
 
 void World::firstFight()
@@ -794,12 +797,53 @@ void World::saveHero(Player *c)
 
   ofstream outFile;
   outFile.open (saver.c_str());
-  outFile << "Writing this to a files.\n";
   outFile << name << endl << atk  << endl << hp  << endl << maxhp << endl;
   outFile << experience << endl << level << endl << nextlevel << endl << gold << endl;
   outFile << wname << endl << watk << endl << wgold << endl << aname << endl << adef << endl << agold << endl;
-  cout << "Saving you hero!" << endl;
-  cout << saver;
+  cout << "Saving your hero!" << endl;
+  //cout << saver;
   outFile.close();
 }
 
+void World::loadHero(string name)
+{
+  c->setName(name);
+  string saver= c->getName();
+  string txt = ".txt";
+  saver = saver + txt;
+  string nline;
+  int atk;
+  int def;
+  int hp;
+  int maxhp;
+  int experience;
+  int level;
+  int nextlevel;
+  int gold;
+  string wname;
+  int watk;
+  int wgold;
+  string aname;
+  int adef;
+  int agold;
+
+  cout << "Loading " << name << endl;
+  ifstream inFile;
+  inFile.open(saver.c_str());
+  inFile >> name >> atk >> hp >> maxhp >> experience >> level >> nextlevel >> gold >> wname;
+  inFile >> watk >> wgold >> aname >> adef >> agold;
+  c->setAtk(atk);
+  c->setHp(hp);
+  c->setmaxHp(maxhp);
+  c->setExp(experience);
+  c->setLevel(level);
+  c->setnextLevel(nextlevel);
+  c->setGold(gold);
+  c->setwName(wname);
+  c->setwAtk(watk);
+  c->setwGold(wgold);
+  c->setaName(aname);
+  c->setaDef(adef);
+  c->setaGold(agold);
+  inFile.close();
+}

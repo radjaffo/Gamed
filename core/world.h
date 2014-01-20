@@ -62,6 +62,7 @@ class World {
         void armorList();
         void armorList(int x);
         void saveHero(Player *c);
+        void loadHero(string name);
 
         /* Future
 

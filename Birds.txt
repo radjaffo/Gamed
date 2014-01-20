@@ -1,15 +1,14 @@
-Writing this to a files.
 Birds
 8
 20
 20
-100
+300
 0
 100
-50
-Stick
-1
+340
+Dagger
+4
 20
-Ragz
-1
+Cloth
+2
 20
