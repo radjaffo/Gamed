@@ -67,6 +67,7 @@ class World {
         //Forest functions
         void loadMonster(int x);
         bool checkLevelUp(Player *c);
+        void levelUp(Player *c, int x);
 
 
 

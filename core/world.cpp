@@ -106,7 +106,10 @@ void World::looper()
   cout << "1. Search" << endl << "2. Town" << endl << "3. Stats" << endl << "4. Quit"<< endl;
   cin >> choice;
   if(c->getHp() <= 0)
-    mc = 2;
+    {
+      mc = 2;
+      break; //TODO not quitting on death...
+    }
 
   if(choice == "1" || choice == "search")
   {
@@ -227,7 +230,12 @@ void World::fight(Monster *m)
     c->setGold(pGold);
     cout << "Total Exp: " << c->getExp() << endl;
     cout << "Total Gold: " << c->getGold() << endl << endl;
-    checkLevelUp(c);
+    //checkLevelUp(c);
+    if(checkLevelUp(c) == true)
+    {
+      int cLvl = c->getLevel();
+      levelUp(c, cLvl);
+    }
     m->setHp(25);
   }
   else
@@ -250,7 +258,9 @@ void World::createHero()
     {
     loadHero(name);
     cout << "You wake up in a field next to town feeling refreshed, welcome back " << c->getName();
-    town();
+    int tempHP = c->getmaxHp();
+    c->setHp(tempHP);
+    return;
     }
   else
   {
@@ -865,6 +875,7 @@ void World::loadMonster(int x)
 
   ifstream inFile;
   inFile.open("core/databank/monsters.txt");
+
   if(inFile.is_open())
   {
     for(int i=0; i < 13; i++)
@@ -873,6 +884,7 @@ void World::loadMonster(int x)
       if(x == mID[i])
       {
         cout << name << "charges you!" << endl;
+        cout << x << endl;
         d->setName(name);
         d->setAtk(atk);
         d->setDef(def);
@@ -880,8 +892,6 @@ void World::loadMonster(int x)
         d->setGold(gold);
         d->setExp(experience);
       }
-      else
-        cout <<"Nope" << endl;
     }
   inFile.close();
   }
@@ -894,12 +904,45 @@ bool World::checkLevelUp(Player *c)
   if (c->getExp() >= c->getNextLevel())
     {
       cout << "Level Up!!" << endl;
+       //play moozak
       return true;
-    //play moozak
     }
   return false;
+}
 
-
+void World::levelUp(Player *c, int x)
+{
+  int lID[9];
+  x++;
+  int current, next, atk, def, hp, cAtk, cDef, cMaxHP;
+  ifstream inFile;
+  inFile.open("core/databank/experience.txt");
+  if(inFile.is_open())
+  {
+    for(int i=0; i < 10; i++)
+    {
+      inFile >> lID[i] >> current >> next >> atk >> def >> hp;
+      if(x == lID[i])
+      {
+        c->setLevel(x);
+        cout << "Level is now " << x << endl;
+        c->setNextLevel(next);
+        cAtk = c->getAtk();
+        cDef = c->getDef();
+        cout << "Attack raised by " << cAtk << endl << "Defense raised by " << cDef << endl << "HP raised by " << hp << endl;
+        cout << "Experience to next level is " << next << endl;
+        cMaxHP = c->getmaxHp();
+        cAtk = cAtk + atk;
+        c->setAtk(cAtk);
+        cDef = cDef + def;
+        c->setDef(cDef);
+        cMaxHP = cMaxHP + hp;
+        c->setmaxHp(cMaxHP);
+        return;
+       }
+    }
+  }
+  else cout <<"Error opening file" << endl;
 }
 
 
