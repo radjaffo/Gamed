@@ -95,11 +95,11 @@ void Character::setLevel(int x){
     Level = x;
 }
 
-int Character::getnextLevel(){
+int Character::getNextLevel(){
     return nextLevel;
 }
 
-void Character::setnextLevel(int x){
+void Character::setNextLevel(int x){
     nextLevel = x;
 }
 

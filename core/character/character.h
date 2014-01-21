@@ -64,8 +64,8 @@ public:
     int getLevel();
     void setLevel(int x);
 
-    int getnextLevel();
-    void setnextLevel(int x);
+    int getNextLevel();
+    void setNextLevel(int x);
 
     int getGold();
     void setGold(int x);
@@ -95,7 +95,7 @@ public:
 
     int getaGold();
     void setaGold(int x);
-    
+
 
 };
 

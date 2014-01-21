@@ -227,7 +227,7 @@ void World::fight(Monster *m)
     c->setGold(pGold);
     cout << "Total Exp: " << c->getExp() << endl;
     cout << "Total Gold: " << c->getGold() << endl << endl;
-    //c->checkLevelUp();
+    checkLevelUp(c);
     m->setHp(25);
   }
   else
@@ -315,7 +315,7 @@ void World::firstFight()
 f->setName("Garthan");
 f->setAtk(9);
 f->setDef(3);
-f->setExp(100);
+f->setExp(50);
 f->setGold(50);
 fight(f);
 cout << "You grab the leg of lamb from the defeated goblin and devour it bone and all!!!" << endl << endl;
@@ -790,7 +790,7 @@ void World::saveHero(Player *c)
   int maxhp = c->getmaxHp();
   int experience = c->getExp();
   int level = c->getLevel();
-  int nextlevel = c->getnextLevel();
+  int nextlevel = c->getNextLevel();
   int gold = c->getGold();
   string wname = c->getwName();
   int watk = c->getwAtk();
@@ -842,7 +842,7 @@ void World::loadHero(string name)
   c->setmaxHp(maxhp);
   c->setExp(experience);
   c->setLevel(level);
-  c->setnextLevel(nextlevel);
+  c->setNextLevel(nextlevel);
   c->setGold(gold);
   c->setwName(wname);
   c->setwAtk(watk);
@@ -889,5 +889,17 @@ void World::loadMonster(int x)
     cout <<"Error opening file" << endl;
 }
 
+bool World::checkLevelUp(Player *c)
+{
+  if (c->getExp() >= c->getNextLevel())
+    {
+      cout << "Level Up!!" << endl;
+      return true;
+    //play moozak
+    }
+  return false;
+
+
+}
 
 
