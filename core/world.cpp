@@ -117,14 +117,15 @@ void World::looper()
  
  do
  {
+   if(c->getHp() <= 0)
+    {
+      mc = 2;
+      break;
+    }
   cout << endl << endl << c->getName() << " : " << c->getHp() << endl << endl;
   cout << "1. Search" << endl << "2. Town" << endl << "3. Stats" << endl << "4. Quit"<< endl;
   cin >> choice;
-  if(c->getHp() <= 0)
-    {
-      mc = 2;
-      break; //TODO not quitting on death...
-    }
+ 
 
   if(choice == "1" || choice == "search")
   {
