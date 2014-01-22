@@ -31,6 +31,7 @@ class World {
 
         // Setup Map
         bool createMap();
+        void clearMap();
         void displayMap();
         void placeCharacters();
         void createHero();

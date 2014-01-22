@@ -2,7 +2,7 @@
 1 goblin 08 05 15 50 50
 2 wolf 10 10 10 75 50
 3 skeleton 12 12 25 75 75 
-4 orc 06 15 25 100 75
+4 orc 12 10 25 100 75
 5 wisp 02 02 30
 6 shrimp 01 01 20
 7 undeadmage 01 04 35

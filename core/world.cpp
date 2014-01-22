@@ -25,7 +25,8 @@ World::World()
 }
 
 
-bool World::createMap() {
+bool World::createMap()
+{
   for(int i = 0; i < 5; i++) {
     for(int j=0; j < 5; j++) {
       Map[i][j] = '_';
@@ -35,6 +36,15 @@ bool World::createMap() {
   // Return TRUE: Success
   // Return FALSE: Failed
   return(true);   // True - Success
+}
+
+void World::clearMap()    //temporary measure
+{
+  for(int i = 0; i < 5; i++){
+    for(int j=0; j < 5; j++){
+      Map[i][j] = '_';      
+    }
+  }
 }
 
 void World::displayMap() 
@@ -49,6 +59,7 @@ void World::displayMap()
   }
 }
 
+
 void World::placeCharacters()
 // Insert characters into the map in static spots
 {
@@ -60,26 +71,30 @@ void World::placeCharacters()
 void World::randomMoveBoth()
 {
 
+
+  clearMap();
+
   int x = rand()%5;
   srand(time(NULL)%50);
   int y = rand()%5;
 
-  cout << "[" << x << "," << y << "]" << endl;
+  //cout << "[" << x << "," << y << "]" << endl;
   Map[x][y] = Hero;
   srand(time(NULL)%50);
   int a = rand()%5;
   srand(time(NULL)%10);
   int b = rand()%5;
   Map[a][b] = Mob;
-  cout << "[" << a << "," << b << "]" << endl;
+  //cout << "[" << a << "," << b << "]" << endl;
 
   if (Map[x][y] == Map[a][b])
   {
+    
     cout << "Monster encountered!! Time to fight!" << endl;
     if(c->getLevel() < 2)
-    int a = rand()%4;
+    int g = rand()%4;
     else
-    int a = rand()%8;
+    int g = rand()%8;
     loadMonster(a);
     fight(d);
   }
@@ -96,7 +111,7 @@ void World::looper()
 {
  int x, y, mc = 1;
  string choice;
- //weaponList(); //load file tester
+ srand(time(NULL));
  createHero();
  //cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
@@ -715,6 +730,8 @@ void World::armorList()
   ifstream inFile;
 
   cout << string(7, '\n');
+  cout << "You are wearing: " << c->getaName() << endl;
+  cout << "Gold: " << c->getGold() << endl;
   cout << "  " << "Name   " << '\t' << "Def" << '\t' << "Gold" << endl;
   inFile.open("core/databank/armor.txt");
   if(inFile.is_open())
@@ -883,7 +900,7 @@ void World::loadMonster(int x)
       inFile >> mID[i] >> name >> atk >> def >> hp >> gold >> experience;
       if(x == mID[i])
       {
-        cout << name << "charges you!" << endl;
+        cout << "A hungry lookin " << name << " charges you!" << endl;
         cout << x << endl;
         d->setName(name);
         d->setAtk(atk);
@@ -912,7 +929,7 @@ bool World::checkLevelUp(Player *c)
 
 void World::levelUp(Player *c, int x)
 {
-  int lID[9];
+  int lID[9];   //do i even need an array here?
   x++;
   int current, next, atk, def, hp, cAtk, cDef, cMaxHP;
   ifstream inFile;
