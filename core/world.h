@@ -34,18 +34,20 @@ class World {
         void clearMap();
         void displayMap();
         void placeCharacters();
-        void createHero();
         string getHero();
         string getMob();
+        void characterMove(Player *c);
+        bool illegalMove(Player *c);
 
         void randomMoveBoth();
         
 
-        
-        void fight(Monster *m);          
+                
 
         //Intro functions
+
         void displayBird();
+        void createHero();
         void firstFight();         
         void displayCharBox(Monster *m); //displays fight menu
         void displayHps(Monster *m);
@@ -66,6 +68,7 @@ class World {
         void saveHero(Player *c);
 
         //Forest functions
+        void fight(Monster *m);  
         void loadMonster(int x);
         bool checkLevelUp(Player *c);
         void levelUp(Player *c, int x);

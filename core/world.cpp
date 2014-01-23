@@ -100,6 +100,41 @@ void World::randomMoveBoth()
   }
 }
 
+void World::characterMove(Player *c)
+{
+  string mChoice;
+  int mCounter = 1;
+  int charMover;
+  cout << "Where would you like to move?" << endl << "east, west, north, or south?" << endl;
+  do
+  {
+    cin >> mChoice;
+    if(mChoice == "east" || "e")
+    {
+      charMover = 1;
+    }
+
+    for(int i=0; i < 5; i++) 
+    {
+      for(int j=0; j< 5; j++)
+      {
+        if(Map[i][j] == Hero)
+        {
+          Map[i][j] = "_";
+          i = i+charMover;
+          Map[i][j] = Hero;
+        }   
+      }
+    }
+  }while(mCounter == 1);
+}
+
+/*bool World::illegalMove(Player *c)
+{
+
+}
+*/
+
 string World::getHero() {
   return Hero;
 }
