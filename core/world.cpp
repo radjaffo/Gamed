@@ -104,32 +104,69 @@ void World::characterMove(Player *c)
 {
   string mChoice;
   int mCounter = 1;
+  int cC, x, y;
   int charMover;
   cout << "Where would you like to move?" << endl << "east, west, north, or south?" << endl;
   do
   {
     cin >> mChoice;
-    if(mChoice == "east" || "e")
+    if(mChoice == "east" || mChoice == "e")
     {
+      mChoice = "e";
       charMover = 1;
+      //illegalMove(east)
     }
-
-    for(int i=0; i < 5; i++) 
+    else if(mChoice == "west" || mChoice == "w")
     {
-      for(int j=0; j< 5; j++)
-      {
-        if(Map[i][j] == Hero)
-        {
-          Map[i][j] = "_";
-          i = i+charMover;
-          Map[i][j] = Hero;
-        }   
-      }
+      mChoice = "w";
+      charMover = -1;
+      //illegalMove(west)
     }
+    else if(mChoice == "south" || mChoice == "s")
+    {
+      mChoice = "s";
+      charMover = 1;
+      //illegalMove(south)
+    }
+    else if(mChoice == "north" || mChoice == "n")
+    {
+      mChoice = "n";
+      charMover = -1;
+      //illegalMove(north)
+    }
+    else
+      cout <<"Error incorrect entry, please try again" << endl;
+
+
+      for(int i=0; i < 5; i++) 
+      {
+        for(int j=0; j< 5; j++)
+        {
+          if(Map[i][j] == Hero)
+          {
+            x = i;
+            y = j;
+          }   
+        }
+      }
+  Map[x][y] = "_";
+  cout << "mChoice is " << mChoice << endl;  testing purposes
+    if(mChoice == "e" || mChoice == "w")
+    {
+      y = y+charMover;
+      cout <<"Moving y to " << x << endl;
+    }
+    else
+    {
+      x = x+charMover;
+      cout <<"Moving x to " << y << endl;
+    }
+    Map[x][y] = Hero;
+  displayMap();
   }while(mCounter == 1);
 }
 
-/*bool World::illegalMove(Player *c)
+/*bool World::illegalMove(Player *c, string name)
 {
 
 }
@@ -147,7 +184,9 @@ void World::looper()
  int x, y, mc = 1;
  string choice;
  srand(time(NULL));
- createHero();
+ displayMap();
+ characterMove(c);
+
  //cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
  do
