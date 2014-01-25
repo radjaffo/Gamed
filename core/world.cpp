@@ -110,34 +110,34 @@ void World::characterMove(Player *c)
   do
   {
     cin >> mChoice;
-    if(mChoice == "east" || mChoice == "e")
+      if(mChoice == "east" || mChoice == "e")
+      {
+        mChoice = "e";
+        charMover = 1;
+        //illegalMove(c, mChoice)
+      }
+      else if(mChoice == "west" || mChoice == "w")
+      {
+        mChoice = "w";
+        charMover = -1;
+        //illegalMove(c, mChoice)
+      }
+      else if(mChoice == "south" || mChoice == "s")
+      {
+        mChoice = "s";
+        charMover = 1;
+        //illegalMove(c, mChoice)
+      }
+      else if(mChoice == "north" || mChoice == "n")
+      {
+        mChoice = "n";
+        charMover = -1;
+        //illegalMove(c, mChoice)
+      }
+      else
+        cout <<"Error incorrect entry, please try again" << endl;
+    if(illegalMove(c, charMover) == false)
     {
-      mChoice = "e";
-      charMover = 1;
-      //illegalMove(east)
-    }
-    else if(mChoice == "west" || mChoice == "w")
-    {
-      mChoice = "w";
-      charMover = -1;
-      //illegalMove(west)
-    }
-    else if(mChoice == "south" || mChoice == "s")
-    {
-      mChoice = "s";
-      charMover = 1;
-      //illegalMove(south)
-    }
-    else if(mChoice == "north" || mChoice == "n")
-    {
-      mChoice = "n";
-      charMover = -1;
-      //illegalMove(north)
-    }
-    else
-      cout <<"Error incorrect entry, please try again" << endl;
-
-
       for(int i=0; i < 5; i++) 
       {
         for(int j=0; j< 5; j++)
@@ -150,7 +150,7 @@ void World::characterMove(Player *c)
         }
       }
   Map[x][y] = "_";
-  cout << "mChoice is " << mChoice << endl;  testing purposes
+  cout << "mChoice is " << mChoice << endl;   //testing purposes
     if(mChoice == "e" || mChoice == "w")
     {
       y = y+charMover;
@@ -163,14 +163,19 @@ void World::characterMove(Player *c)
     }
     Map[x][y] = Hero;
   displayMap();
+  }
+  else 
+    cout << "that move takes you out of bounds, try again" << endl;
   }while(mCounter == 1);
 }
 
-/*bool World::illegalMove(Player *c, string name)
+bool World::illegalMove(Player *c, int x)
 {
 
+  return false;
+
 }
-*/
+
 
 string World::getHero() {
   return Hero;

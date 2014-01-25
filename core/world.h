@@ -37,7 +37,7 @@ class World {
         string getHero();
         string getMob();
         void characterMove(Player *c);
-        bool illegalMove(Player *c);
+        bool illegalMove(Player *c, int x);
 
         void randomMoveBoth();
         
