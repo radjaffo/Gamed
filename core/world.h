@@ -36,8 +36,8 @@ class World {
         void placeCharacters();
         string getHero();
         string getMob();
-        void characterMove(Player *c);
-        bool illegalMove(Player *c, int x);
+        void characterMove(Player *c, Monster *m);
+        bool illegalMove(Player *c, string name);
 
         void randomMoveBoth();
         

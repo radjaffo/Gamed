@@ -49,6 +49,7 @@ void World::clearMap()    //temporary measure
 
 void World::displayMap() 
 {
+  cout << "Forest" << endl;
   for(int i=0; i < 5; i++) 
   {
     for(int j=0; j< 5; j++)
@@ -68,7 +69,7 @@ void World::placeCharacters()
 
 }
 
-void World::randomMoveBoth()
+/*void World::randomMoveBoth()
 {
 
 
@@ -99,13 +100,16 @@ void World::randomMoveBoth()
     fight(d);
   }
 }
-
-void World::characterMove(Player *c)
+*/
+void World::characterMove(Player *c, Monster *m)
 {
   string mChoice;
+  placeCharacters();
   int mCounter = 1;
-  int cC, x, y;
+  int cC, x, y, xMonster, yMonster, monster;
   int charMover;
+  cout << string(16, '\n');
+  displayMap();
   cout << "Where would you like to move?" << endl << "east, west, north, or south?" << endl;
   do
   {
@@ -136,7 +140,7 @@ void World::characterMove(Player *c)
       }
       else
         cout <<"Error incorrect entry, please try again" << endl;
-    if(illegalMove(c, charMover) == false)
+  if(illegalMove(c, mChoice) == true)
     {
       for(int i=0; i < 5; i++) 
       {
@@ -146,7 +150,12 @@ void World::characterMove(Player *c)
           {
             x = i;
             y = j;
-          }   
+          }
+          if(Map[i][j] == Mob)  
+          {
+            xMonster = i;
+            yMonster = j;
+          } 
         }
       }
   Map[x][y] = "_";
@@ -154,28 +163,83 @@ void World::characterMove(Player *c)
     if(mChoice == "e" || mChoice == "w")
     {
       y = y+charMover;
-      cout <<"Moving y to " << x << endl;
+      cout <<"Moving x to " << y << endl;
     }
     else
     {
       x = x+charMover;
-      cout <<"Moving x to " << y << endl;
+      cout <<"Moving y to " << x << endl;
     }
     Map[x][y] = Hero;
+  cout << string(5, '\n');
   displayMap();
   }
   else 
     cout << "that move takes you out of bounds, try again" << endl;
+  if(Map[x][y] == Map[xMonster][yMonster])
+  {
+    mCounter = 2;
+    cout << "Monster encountered!! Time to fight!" << endl;
+    if(c->getLevel() < 4)
+    monster = rand()%4;
+    else
+    monster = rand()%8;
+    loadMonster(monster);
+  }
   }while(mCounter == 1);
+  fight(m);
 }
 
-bool World::illegalMove(Player *c, int x)
+bool World::illegalMove(Player *c, string direction)
 {
+  int yCoord, xCoord, mapCheck, xMap, yMap;
+  for(mapCheck = 0; mapCheck < 5; mapCheck++)
+  {
+    if(Map[mapCheck][0] == Hero && direction == "w")
+    {
+      cout <<"Illegal Move detected!!" << endl;
+      return false;
+    }
+    if(Map[mapCheck][4] == Hero && direction == "e")
+    {
+      cout <<"Illegal Move detected!!" << endl;
+      return false;
+    }
+    if (Map[0][mapCheck] == Hero && direction == "n")
+    {
+      cout << "Illegal Move detected!!" << endl;
+      return false;
+    }
+    if(Map[4][mapCheck] == Hero && direction == "s")
+    {
+      cout << "Illegal Move detected!!" << endl;
+      return false;
+    }
+    
+  }
+  /*if(Map[0][0] == Hero && direction == "w")
+  {
+    cout << "Illegal Move detected!!" << endl;
+    return true;
+  }
+  */
 
-  return false;
+  for(int ii = 0; ii < 5; ii++)
+  {
+    for(int jj = 0; jj < 5; jj++)
+    {
+      if(Map[ii][jj] == Hero)
+      {
+      yMap = ii;
+      xMap = jj;
+      }
+    }
+  }
 
+cout << "Hero is at x: " << xMap << " y: " << yMap << endl;
+//cout << "Move works!" << endl;
+  return true;
 }
-
 
 string World::getHero() {
   return Hero;
@@ -184,13 +248,15 @@ string World::getHero() {
 string World::getMob() {
   return Mob;
 }
+
 void World::looper()
 {
  int x, y, mc = 1;
  string choice;
  srand(time(NULL));
- displayMap();
- characterMove(c);
+ createHero();
+ //displayMap();
+ //characterMove(c, d);
 
  //cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
@@ -208,7 +274,8 @@ void World::looper()
 
   if(choice == "1" || choice == "search")
   {
-    randomMoveBoth();
+
+    characterMove(c, d);
   }
 
   else if (choice == "2" || choice == "town")
