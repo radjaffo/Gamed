@@ -7,7 +7,7 @@
 6 shrimp 01 01 20 5 10
 7 undeadmage 15 15 35 100 100  
 8 temp 01 01 01 01 01 01
-9 temp 01 01 01
-10 Garthax 05 05 100
-11 Bajebbers 10 10 200
-12 Threepwodz 15 15 20
+9 temp 01 01 01 01 01 01
+10 Garthax 05 05 100 300 300
+11 Bajebbers 10 10 200 500 500
+12 Threepwodz 15 15 20 20 20

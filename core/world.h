@@ -25,7 +25,6 @@ class World {
         World();                // Constructor - Create new World
         //~World();               // Destructor - Destroy World
 
-
         //Main Game function
         void looper();             
 
@@ -38,12 +37,8 @@ class World {
         string getMob();
         void characterMove(Player *c, Monster *m);
         bool illegalMove(Player *c, string name);
-
         void randomMoveBoth();
         
-
-                
-
         //Intro functions
 
         void displayBird();
@@ -53,6 +48,7 @@ class World {
         void displayHps(Monster *m);
         void playerStats(Player *c);
         void loadHero(string name);
+        void itemList(Player *c);
 
         //Town functions
         void town();
@@ -72,6 +68,7 @@ class World {
         void loadMonster(int x);
         bool checkLevelUp(Player *c);
         void levelUp(Player *c, int x);
+
 
 
 

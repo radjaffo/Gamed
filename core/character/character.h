@@ -1,6 +1,7 @@
 /* Character - Players and Mobs in the game world */
 #include <iostream>
 #include <string>
+#include "inventory.h"
 
 #ifndef CHARACTER_H
 #define CHARACTER_H
@@ -31,6 +32,8 @@ protected:
     string aName;
     int aDef;
     int aGold;
+
+    Inventory *backpack;
 
 
 
@@ -95,6 +98,7 @@ public:
 
     int getaGold();
     void setaGold(int x);
+
 
 
 };

@@ -2,6 +2,7 @@
 #include "character.h"
 #include "monster.h"
 #include "player.h"
+#include "inventory.h"
 
 Monster::Monster()
 {

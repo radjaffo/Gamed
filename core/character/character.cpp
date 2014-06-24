@@ -3,9 +3,12 @@
 #include <iostream>
 #include <string>
 
+
+#include "inventory.h"
 #include "character.h"
 
-Character::Character() {
+Character::Character() 
+{
     ID = 0;
     Name = "";
     Atk = 0;
@@ -24,6 +27,8 @@ Character::Character() {
     aName = "";
     aDef = 0;
     aGold = 0;
+
+    backpack = NULL;
 
 }
 

@@ -4,6 +4,7 @@
 
 class Character;
 class Player;
+class Inventory;
 
 class Monster:public Character
 {

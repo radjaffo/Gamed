@@ -10,6 +10,7 @@
 #include "character/character.h"
 #include "character/player.h"
 #include "character/monster.h"
+#include "character/inventory.h"
 
 using namespace std;
 
@@ -20,8 +21,8 @@ World::World()
   createMap();          //functions for graphics
   placeCharacters();
   c = new Player;       //hero setup
-  f = new Monster;      //first fight
-  d = new Monster;      //forest
+  f = new Monster;      //first fight monster
+  d = new Monster;      //forest monsters
 }
 
 
@@ -140,8 +141,6 @@ void World::characterMove(Player *c, Monster *m)
       }
       else
         cout <<"Error incorrect entry, please try again" << endl;
-  if(illegalMove(c, mChoice) == true)
-    {
       for(int i=0; i < 5; i++) 
       {
         for(int j=0; j< 5; j++)
@@ -158,8 +157,10 @@ void World::characterMove(Player *c, Monster *m)
           } 
         }
       }
+  if(illegalMove(c, mChoice) == false)
+  {
   Map[x][y] = "_";
-  cout << "mChoice is " << mChoice << endl;   //testing purposes
+  //cout << "mChoice is " << mChoice << endl;   //testing purposes
     if(mChoice == "e" || mChoice == "w")
     {
       y = y+charMover;
@@ -170,14 +171,17 @@ void World::characterMove(Player *c, Monster *m)
       x = x+charMover;
       cout <<"Moving y to " << x << endl;
     }
-    Map[x][y] = Hero;
+  Map[x][y] = Hero;
   cout << string(5, '\n');
   displayMap();
   }
   else 
+    {
     cout << "that move takes you out of bounds, try again" << endl;
+    displayMap();
+    }
   if(Map[x][y] == Map[xMonster][yMonster])
-  {
+    {
     mCounter = 2;
     cout << "Monster encountered!! Time to fight!" << endl;
     if(c->getLevel() < 4)
@@ -185,46 +189,41 @@ void World::characterMove(Player *c, Monster *m)
     else
     monster = rand()%8;
     loadMonster(monster);
-  }
+    }
+  //cout << "should be looping" << endl;
   }while(mCounter == 1);
   fight(m);
 }
 
 bool World::illegalMove(Player *c, string direction)
 {
-  int yCoord, xCoord, mapCheck, xMap, yMap;
-  for(mapCheck = 0; mapCheck < 5; mapCheck++)
+  int xMap, yMap;
+  for(int mapCheck = 0; mapCheck < 5; mapCheck++)
   {
     if(Map[mapCheck][0] == Hero && direction == "w")
     {
       cout <<"Illegal Move detected!!" << endl;
-      return false;
+      return true;
     }
     if(Map[mapCheck][4] == Hero && direction == "e")
     {
       cout <<"Illegal Move detected!!" << endl;
-      return false;
+      return true;
     }
     if (Map[0][mapCheck] == Hero && direction == "n")
     {
       cout << "Illegal Move detected!!" << endl;
-      return false;
+      return true;
     }
     if(Map[4][mapCheck] == Hero && direction == "s")
     {
       cout << "Illegal Move detected!!" << endl;
-      return false;
+      return true;
     }
     
   }
-  /*if(Map[0][0] == Hero && direction == "w")
-  {
-    cout << "Illegal Move detected!!" << endl;
-    return true;
-  }
-  */
 
-  for(int ii = 0; ii < 5; ii++)
+ /* for(int ii = 0; ii < 5; ii++)
   {
     for(int jj = 0; jj < 5; jj++)
     {
@@ -235,10 +234,10 @@ bool World::illegalMove(Player *c, string direction)
       }
     }
   }
-
-cout << "Hero is at x: " << xMap << " y: " << yMap << endl;
+*/
+//cout << "Hero is at x: " << xMap << " y: " << yMap << endl;
 //cout << "Move works!" << endl;
-  return true;
+  return false;
 }
 
 string World::getHero() {
@@ -258,7 +257,6 @@ void World::looper()
  //displayMap();
  //characterMove(c, d);
 
- //cout << "You walk into the dark forest, a few paths lay before you. What do you do?" << endl << endl;
  
  do
  {
@@ -268,7 +266,7 @@ void World::looper()
       break;
     }
   cout << endl << endl << c->getName() << " : " << c->getHp() << endl << endl;
-  cout << "1. Search" << endl << "2. Town" << endl << "3. Stats" << endl << "4. Quit"<< endl;
+  cout << "1. Search" << endl << "2. Town" << endl << "3. Stats" << endl << "4. Inventory" << endl << "5. Quit"<< endl;
   cin >> choice;
  
 
@@ -290,7 +288,13 @@ void World::looper()
     playerStats(c);
     }
 
-  else if (choice == "4" || choice == "quit")
+  else if
+    (choice == "4" || choice == "inventory")
+    {
+      //cout << "Not implemented yet... sorry!";
+      c->inventoryMenu();
+    }
+  else if (choice == "5" || choice == "quit")
   {
     cout << endl << "Thanks for playing... Goodbye!" << endl << endl;
     mc = 2;
@@ -346,7 +350,7 @@ void World::fight(Monster *m)
 
     else if(choice == "3" || choice == "run")
     {
-      int b = rand()%100+1;
+      int b = rand()%100+2;
       cout << endl <<"Player runs like little girl" << endl << endl;
       
       if(m->getName() == "Garthan")
@@ -392,7 +396,6 @@ void World::fight(Monster *m)
     c->setGold(pGold);
     cout << "Total Exp: " << c->getExp() << endl;
     cout << "Total Gold: " << c->getGold() << endl << endl;
-    //checkLevelUp(c);
     if(checkLevelUp(c) == true)
     {
       int cLvl = c->getLevel();
@@ -410,6 +413,7 @@ void World::createHero()
   cout << string(25, '\n');
   displayBird();  
   cout << endl << endl;
+  c->inventoryMenu();
   cout <<"Welcome to the world, what should we call you?" << endl;
   cin >> name;
   c->setName(name);
@@ -561,6 +565,11 @@ void World::displayHps(Monster *m)
   for(sc = 62; sc > cc; sc--)
       cout << " ";
   cout << " |" << endl;
+}
+
+void itemList(Player *c)
+{
+  
 }
 
 void World::town()
@@ -792,7 +801,8 @@ void World::weaponList(int x)
                   }
               }
            else
-              cout <<"Error! Not enough gold" << endl;
+              cout << endl << "Vendor" << endl;
+              cout <<"What are ye trying to pull... Try buyin without enough gold again and ye might just lose an arm" << endl;
         }
       }
     }
@@ -848,6 +858,7 @@ void World::playerStats(Player *c)
   cout << " Def: " << j << endl;
   cout << " Gold: " << c->getGold() << endl;
   cout << " Exp: " << c->getExp() << endl;
+  cout << " Xp for next Level :  " << c->getNextLevel() << endl;
 }
 
 void World::displayBird()
@@ -980,7 +991,6 @@ void World::saveHero(Player *c)
   outFile << experience << endl << level << endl << nextlevel << endl << gold << endl;
   outFile << wname << endl << watk << endl << wgold << endl << aname << endl << adef << endl << agold << endl;
   cout << "Saving your hero!" << endl;
-  //cout << saver;
   outFile.close();
 }
 
@@ -1009,6 +1019,8 @@ void World::loadHero(string name)
   cout << "Loading " << name << endl;
   ifstream inFile;
   inFile.open(saver.c_str());
+  if(inFile.is_open())
+  {
   inFile >> name >> atk >> hp >> maxhp >> experience >> level >> nextlevel >> gold >> wname;
   inFile >> watk >> wgold >> aname >> adef >> agold;
   c->setAtk(atk);
@@ -1025,6 +1037,14 @@ void World::loadHero(string name)
   c->setaDef(adef);
   c->setaGold(agold);
   inFile.close();
+  }
+  else
+  {
+
+    cout << "Error, character not found" << endl;
+    inFile.close();
+    return;
+  }
 }
 
 void World::loadMonster(int x)
@@ -1055,6 +1075,7 @@ void World::loadMonster(int x)
         d->setHp(hp);
         d->setGold(gold);
         d->setExp(experience);
+        break;
       }
     }
   inFile.close();
@@ -1068,7 +1089,7 @@ bool World::checkLevelUp(Player *c)
   if (c->getExp() >= c->getNextLevel())
     {
       cout << "Level Up!!" << endl;
-       //play moozak
+       //play music
       return true;
     }
   return false;
@@ -1093,7 +1114,7 @@ void World::levelUp(Player *c, int x)
         c->setNextLevel(next);
         cAtk = c->getAtk();
         cDef = c->getDef();
-        cout << "Attack raised by " << cAtk << endl << "Defense raised by " << cDef << endl << "HP raised by " << hp << endl;
+        cout << "Attack raised by " << atk << endl << "Defense raised by " << def << endl << "HP raised by " << hp << endl;
         cout << "Experience to next level is " << next << endl;
         cMaxHP = c->getmaxHp();
         cAtk = cAtk + atk;
@@ -1102,9 +1123,10 @@ void World::levelUp(Player *c, int x)
         c->setDef(cDef);
         cMaxHP = cMaxHP + hp;
         c->setmaxHp(cMaxHP);
-        return;
+        break;
        }
     }
+  inFile.close();
   }
   else cout <<"Error opening file" << endl;
 }
